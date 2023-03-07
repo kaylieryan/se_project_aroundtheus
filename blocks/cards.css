@@ -7,13 +7,12 @@
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
   grid-gap: 17px 20px;
+  
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  border-radius: 10px;
   list-style: none;
 }
 
@@ -24,7 +23,7 @@
 
 .card__description {
   display: flex;
-  background-color: white;
+  background-color: #f2f2f2;
   color: black;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -38,8 +37,9 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/like-inactive.svg) center no-repeat;
-  height: 21px;
-  width: 18px;
+  background-image: transparent url(../images/like-inactive.svg) center
+    no-repeat;
+  height: 18px;
+  width: 21px;
   margin-left: auto;
 }
