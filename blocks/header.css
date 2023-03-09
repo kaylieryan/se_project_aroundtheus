@@ -1,3 +1,31 @@
 .header {
-  margin-top: 45px;
+  background-color: black;
+  max-width: 880px;
+  /*margin: auto; Is this margin needed?*/
+  color: white;
+  padding-top: 45px;
+  border-bottom: 1px solid #545454;
+  
+}
+
+.header__logo {
+  /*display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;*/
+  padding-bottom: 41px;
+}
+
+@media screen and (max-width: 544px) {
+  .header {
+    margin-top: 28px;
+    height: 56px;
+    padding: 0;
+  }
+
+  .header__image {
+    height: 24px;
+    width: 126px;
+    margin-left: 27px;
+  }
 }
