@@ -4,25 +4,9 @@
 }
 
 .page__section {
+  position: relative;
   max-width: 880px;
   width: 100%;
-  position: relative;
   margin: 0 auto;
-  
 }
 
-.page__content {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-}
-
-@media screen and (max-width: 544px) {
-  .page__section {
-    max-width: 768px;
-    padding-left: 19px;
-    padding-right: 19px;
-    box-sizing: border-box;
-  }
-}

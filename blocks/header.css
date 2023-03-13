@@ -1,31 +1,27 @@
 .header {
   background-color: black;
   max-width: 880px;
-  /*margin: auto; Is this margin needed?*/
+  min-height: 33px;
   color: white;
-  padding-top: 45px;
+  padding-top: 42px;
   border-bottom: 1px solid #545454;
+  width: 100%;
   
 }
 
 .header__logo {
-  /*display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 60px;*/
-  padding-bottom: 41px;
+  margin-bottom: 41px;
 }
 
-@media screen and (max-width: 544px) {
+@media screen and (min-width: 320px) and (max-width: 768px) {
   .header {
-    margin-top: 28px;
-    height: 56px;
-    padding: 0;
+    padding-bottom: 32px;
+    width: 100%;
+    margin: 0;
   }
-
-  .header__image {
+  .header__avatar {
     height: 24px;
     width: 126px;
-    margin-left: 27px;
+    padding-left: 27px;
   }
 }
