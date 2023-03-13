@@ -6,7 +6,6 @@
   padding-top: 42px;
   border-bottom: 1px solid #545454;
   width: 100%;
-  
 }
 
 .header__logo {
@@ -19,7 +18,7 @@
     width: 100%;
     margin: 0;
   }
-  .header__avatar {
+  .header__logo {
     height: 24px;
     width: 126px;
     padding-left: 27px;
