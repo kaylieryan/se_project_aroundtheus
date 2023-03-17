@@ -20,7 +20,9 @@
     "title button"
     "description description";
   grid-template-columns: minmax(auto, 373px) auto;
-  gap: 9px 17px;
+  row-gap: 16px;
+
+
 }
 
 .profile__title {
