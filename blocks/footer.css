@@ -5,19 +5,23 @@
   font-size: 18px;
   line-height: 21px;
   color: #545454;
-  /*padding-top: 67px;*/
+  padding-top: 67px;
 }
 
 .footer__copyright {
   margin: 0;
-  padding-bottom: 60px;
 }
 
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 768px) {
   .footer {
-    max-width: calc(100% - 40px);
+    max-width: 282px;
+    padding-top: 48px;
+    padding-bottom: 36px;
+    margin: 0;
+    padding-left: 56px;
+  }
+  .footer__copyright {
     font-size: 14px;
     line-height: 17px;
-    margin-left: 19px;
   }
 }
