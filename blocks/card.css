@@ -23,7 +23,6 @@
   padding-right: 20px;
   align-items: center;
   justify-content: space-between;
-  
 }
 
 .card__title {
@@ -46,6 +45,7 @@
   border: none;
   border-radius: 0 0 10px;
   transition: opacity 0.35s;
+  flex-shrink: 0;
 }
 
 .card__like-button:hover {
