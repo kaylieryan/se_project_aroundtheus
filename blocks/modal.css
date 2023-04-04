@@ -90,6 +90,7 @@
   font-size: 18px;
   line-height: 22px;
   padding: 10px 15px;
+  text-align: center;
   cursor: pointer;
   height: 50px;
 }
@@ -100,7 +101,7 @@
 
 @media screen and (max-width: 630px) {
   .modal__close {
-    bottom: calc(100% + 30px);
+    bottom: calc(100% + 35px);
     left: calc(100% - 30px);
     width: 26px;
     height: 26px;
