@@ -111,21 +111,29 @@
       <p class="footer__copyright">&copy; 2023 Around the U.S.</p>
     </footer>
 
-    <div class="modal modal_opened" id="profile-edit-modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
+        <button
+          class="modal__close"
+          id="profile-edit-close-button"
+          type="button"></button>
         <p class="modal__heading">Edit profile</p>
         <form class="modal__form">
           <input
+            class="modal__input"
             type="text"
-            name="name"
-            placeholder="Jacques Cousteau"
-            class="modal__input" />
+            name="title"
+            type="text"
+            id="profile-title-input"
+            placeholder="Name"
+            required />
           <input
+            class="modal__input"
             type="text"
-            name="About me"
-            placeholder="Explorer"
-            class="modal__input" />
+            name="description"
+            id="profile-description-input"
+            placeholder="Description"
+            required />
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
