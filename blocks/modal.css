@@ -5,10 +5,10 @@
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1;
   padding: 0 19px;
-  display: none;
   visibility: hidden;
+  display: none;
 }
 
 .modal_opened {
@@ -20,8 +20,8 @@
   margin: auto;
   position: relative;
   background-color: #fff;
-  width: 430px;
-  max-width: 100%;
+  max-width: 430px;
+  width: 100%;
   padding: 36px;
   border-radius: 10px;
 }
@@ -30,7 +30,6 @@
   background-image: url(../images/close-icon.svg);
   border: none;
   position: absolute;
-  cursor: pointer;
   bottom: calc(100% + 5px);
   left: calc(100% + 5px);
   width: 40px;
@@ -42,6 +41,7 @@
 
 .modal__close:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .modal__heading {
@@ -73,6 +73,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  width: 100%;
   border: none;
   border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
 }
@@ -91,12 +92,12 @@
   line-height: 22px;
   padding: 10px 15px;
   text-align: center;
-  cursor: pointer;
   height: 50px;
 }
 
 .modal__button:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 630px) {
