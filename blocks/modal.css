@@ -13,11 +13,7 @@
   display: none;
 }
 
-.model__form {
-  max-width: 430px;
-}
-
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -48,7 +44,11 @@
   cursor: pointer;
 }
 
-.modal__heading {
+.modal__form {
+  max-width: 430px;
+}
+
+.modal__title {
   font-family: "Inter", Arial, Sans-serif;
   font-style: normal;
   color: #000;
@@ -78,7 +78,7 @@
   cursor: pointer;
 }
 
-.model__button:hover {
+.modal__button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -137,6 +137,7 @@
     background-size: 38px 18px;
     font-size: 14px;
     line-height: 17px;
+    border: none;
   }
 
   .modal__input {
