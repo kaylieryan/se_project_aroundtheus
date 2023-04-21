@@ -24,10 +24,8 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+//Elements
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*                                                Element                                                  */
-/*---------------------------------------------------------------------------------------------------------*/
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(".modal__close");
@@ -40,9 +38,7 @@ const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*                                                Functions                                                */
-/*---------------------------------------------------------------------------------------------------------*/
+//Functions
 
 function handleModalClose() {
   profileEditModal.classList.remove("modal_opened");
@@ -58,9 +54,11 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*                                                Event Handlers                                           */
-/*---------------------------------------------------------------------------------------------------------*/
+initialCards.forEach((cardData) => {
+  cardListEl.prepend(getCardElement(cardData));
+});
+
+//Event Handlers
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
@@ -69,9 +67,10 @@ function handleProfileEditSubmit(e) {
   handleModalClose();
 }
 
-/*---------------------------------------------------------------------------------------------------------*/
-/*                                                Event Listeners                                          */
-/*---------------------------------------------------------------------------------------------------------*/
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileModalCloseButton.addEventListener("click", handleModalClose);
+
+//Event Listeners
 
 profileEditButton.addEventListener("click", () => {
   profileEditModal.classList.add("modal_opened");
@@ -79,11 +78,3 @@ profileEditButton.addEventListener("click", () => {
   modalDescriptionInput.value = profileDescription.textContent;
 });
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
-profileModalCloseButton.addEventListener("click", handleModalClose);
-
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardListEl.append(cardElement);
-});
