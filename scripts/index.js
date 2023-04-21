@@ -24,8 +24,8 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-//Elements
 
+//Elements
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileModalCloseButton = document.querySelector(".modal__close");
@@ -37,29 +37,27 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
+const addNewCardButton = document.querySelector(".profile__add-button");
 
 //Functions
-
-function handleModalClose() {
+function handleModalOpen() {
   profileEditModal.classList.remove("modal_opened");
+
 }
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
+
   cardTitleEl.textContent = cardData.name;
   cardImageEl.alt = cardTitleEl.textContent;
   cardImageEl.src = cardData.link;
+
   return cardElement;
 }
 
-initialCards.forEach((cardData) => {
-  cardListEl.prepend(getCardElement(cardData));
-});
-
 //Event Handlers
-
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = modalTitleInput.value;
@@ -67,8 +65,7 @@ function handleProfileEditSubmit(e) {
   handleModalClose();
 }
 
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-profileModalCloseButton.addEventListener("click", handleModalClose);
+
 
 //Event Listeners
 
@@ -77,4 +74,17 @@ profileEditButton.addEventListener("click", () => {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
 });
+
+profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+profileModalCloseButton.addEventListener("click", handleModalOpen);
+addNewCardButton.addEventListener("click", handleModalOpen);
+
+initialCards.forEach((cardData) => {
+  cardListEl.prepend(getCardElement(cardData));
+});
+
+
+
+
+
 
