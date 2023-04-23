@@ -45,7 +45,7 @@ const cardTitleInput = addCardFormElement.querySelector(
 );
 const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
-const deleteButton = document.querySelector(".card__delete-button");
+//const deleteButton = document.querySelector(".card__delete-button");
 
 /*Image Modal
 const imageModal = document.querySelector("#image-modal");
@@ -79,7 +79,8 @@ function getCardElement(cardData) {
   });
 
   deleteButton.addEventListener("click", () => {
-    deleteButton.classList.toggle("card__delete-button_active");
+    const card = deleteButton.closest(".card");
+    card.remove();
   });
 
   /*Card image modal
