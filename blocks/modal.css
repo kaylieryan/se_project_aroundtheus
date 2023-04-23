@@ -6,7 +6,6 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  display: flex;
   padding: 0 19px;
   align-items: center;
   justify-content: center;
@@ -91,7 +90,7 @@
 }
 
 .modal__title {
-  font-family: "Inter", Arial, Sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   color: #000;
   max-width: 330px;
@@ -99,7 +98,6 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  max-width: 330px;
   margin: 0;
 }
 
@@ -110,7 +108,7 @@
   border-radius: 2px;
   margin-top: 48px;
   color: #fff;
-  font-family: "Inter", Arial, Sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
