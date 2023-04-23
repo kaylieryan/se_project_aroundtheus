@@ -50,7 +50,7 @@
       <p class="footer__copyright">&copy; 2023 Around the U.S.</p>
     </footer>
 
-<!-- Edit Modal-->
+    <!-- Edit Modal-->
 
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
@@ -105,6 +105,25 @@
             required />
           <button class="modal__button" type="submit">Save</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Image Modal-->
+
+    <div class="modal" id="image-modal">
+      <div class="modal__preview-container">
+        <button
+          class="modal__preview-close"
+          id="preview-modal-close-button"
+          type="button">
+          aria-label="Modal Close Button"
+        </button>
+        <img
+          src=""
+          alt="Preview Image"
+          class="modal__preview-image"
+          id="card-preview-image" />
+        <p class="modal__preview-title" id="card-preview-title"></p>
       </div>
     </div>
 

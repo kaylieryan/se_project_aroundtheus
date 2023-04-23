@@ -45,12 +45,15 @@ const cardTitleInput = addCardFormElement.querySelector(
 );
 const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
 const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
-//const deleteButton = document.querySelector(".card__delete-button");
 
-/*Image Modal
-const imageModal = document.querySelector("#image-modal");
-const previewImage = imageModal.querySelector(".modal__image");
-const previewModalCloseButton = imageModal.querySelector(".modal__close");*/
+const previewImageModal = document.querySelector("#image-modal");
+const previewImageModalClose = previewImageModal.querySelector(
+  "#preview-modal-close-button"
+);
+const previewTitle = previewImageModal.querySelector("#card-preview-title");
+const previewImage = previewImageModal.querySelector("#card-preview-image");
+const cardImage = document.querySelector(".card__image");
+const cardTitle = document.querySelector(".card__title");
 
 //Functions
 
@@ -83,13 +86,17 @@ function getCardElement(cardData) {
     card.remove();
   });
 
-  /*Card image modal
   cardImage.addEventListener("click", () => {
-   previewImage.src = cardData.link;
-   previewImage.alt = cardTitle.textContent;
-    handleModalOpen(previewModal);
+    const previewImageModal = document.querySelector("#image-modal");
+    const previewTitle = previewImageModal.querySelector("#card-preview-title");
+    const previewImage = previewImageModal.querySelector("#card-preview-image");
+
+    previewImage.src = cardImage.src;
+    previewImage.alt = cardTitle.textContent;
+    previewTitle.textContent = cardTitle.textContent;
+    handleModalOpen(previewImageModal);
   });
-////////////////////*/
+
   cardTitle.textContent = cardData.name;
   cardImage.alt = cardTitle.textContent;
   cardImage.src = cardData.link;
@@ -132,7 +139,9 @@ addCardModalCloseButton.addEventListener("click", () =>
   handleModalClose(addCardModal)
 );
 
-//      .addEventListener("click", (closeImageModal);
+previewImageModalClose.addEventListener("click", () => {
+  handleModalClose(previewImageModal);
+});
 
 const likeButtons = document.querySelectorAll(".card__like-button");
 likeButtons.forEach((likeButton) => {});
