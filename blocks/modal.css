@@ -62,7 +62,7 @@
   background-image: url(../images/close-icon.svg);
   background-repeat: no-repeat;
   background-size: contain;
-  transition: 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .modal__close:hover {
@@ -101,6 +101,7 @@
   text-align: center;
   background-size: 109px 18px;
   cursor: pointer;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .modal__button:hover {
