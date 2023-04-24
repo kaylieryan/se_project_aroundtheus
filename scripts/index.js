@@ -57,11 +57,6 @@ const previewTitle = previewImageModal.querySelector("#card-preview-title");
 const previewImage = previewImageModal.querySelector("#card-preview-image");
 const cardImage = document.querySelector(".card__image");
 const cardTitle = document.querySelector(".card__title");
-
-//close buttons
-//const profileModalCloseButton = editProfileModal.querySelector(".modal__close");
-//const addCardModalCloseButton = addCardModal.querySelector(".modal__close");
-//const previewImageModalClose = previewImageModal.querySelector(".modal__close");
 const closeButtons = document.querySelectorAll(".modal__close");
 
 //Functions
@@ -140,22 +135,9 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 addNewCardButton.addEventListener("click", () => handleModalOpen(addCardModal));
 
-//Universal Handler for close buttons
 closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const popup = button.closest(".popup");
+    const popup = button.closest(".modal");
     handleModalClose(popup);
   });
 });
-
-//handleModalClose.addEventListener("click", () =>
-//handleModalClose(editProfileModal)
-//);
-
-//addCardModalCloseButton.addEventListener("click", () =>
-//handleModalClose(addCardModal)
-//);
-
-//previewImageModalClose.addEventListener("click", () =>
-//handleModalClose(previewImageModal)
-//);
