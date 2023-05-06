@@ -66,15 +66,30 @@
             name="name"
             id="modal-form-title"
             placeholder="Name"
+            maxlength="40"
+            minlength="2"
             required />
+          <span class="modal__error-message" id="modal-form-title-error"
+            >Please fill out this field.</span
+          >
           <input
             class="modal__input modal__input_type_description"
             type="text"
             name="description"
             id="modal-form-description"
             placeholder="Description"
+            maxlength="200"
+            minlength="2"
             required />
-          <button class="modal__button" type="submit">Save</button>
+          <span class="modal__error-message" id="modal-form-description-error"
+            >Please fill out this field.</span
+          >
+          <button
+            class="modal__button modal__button_inactive"
+            type="submit"
+            disabled>
+            Save
+          </button>
         </form>
       </div>
     </div>
@@ -95,14 +110,24 @@
             name="title"
             id="card-modal-form-title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required />
+          <span class="modal__error-message" id="card-modal-form-title-error"
+            >Please fill out this field.</span
+          >
           <input
             class="modal__input modal__input_type_url"
-            type="text"
+            type="url"
             name="url"
             id="card-modal-form-description"
             placeholder="Image URL"
             required />
+          <span
+            class="modal__error-message"
+            id="card-modal-form-description-error"
+            >Please enter a web address.</span
+          >
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
