@@ -23,7 +23,7 @@ function hasInvalidInput(inputEls) {
   return !inputEls.every((inputEl) => inputEl.validity.valid);
 }
 
-function toggleButtonState(inputEls, buttonEl, { inactiveButtonClass }) {
+function toggleButtonState(inputEls, submitButton, { inactiveButtonClass }) {
   let foundInvalid = false;
   inputEls.forEach((inputEl) => {
     if (!inputEl.validity.valid) {
@@ -68,9 +68,9 @@ const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: ".modal__button_inactive",
-  inputErrorClass: ".modal__error-message",
-  errorClass: ".modal__error_visible",
+  inactiveButtonClass: "modal__button_inactive",
+  inputErrorClass: "modal__error-message",
+  errorClass: "modal__error_visible",
 };
 
 enableValidation(config);
