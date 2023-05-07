@@ -123,6 +123,15 @@ function handleAddCardFormSubmit(e) {
   e.target.reset();
 }
 
+const closeModalWithEsc = (e) => {
+  if (e.key === "Escape") {
+    const activeModal = document.querySelector(".modal_opened");
+    handleModalClose(activeModal);
+  }
+};
+
+document.addEventListener("keydown", closeModalWithEsc);
+
 profileEditButton.addEventListener("click", () => {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
