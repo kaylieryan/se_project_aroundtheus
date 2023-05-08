@@ -129,8 +129,7 @@
 }
 
 .modal__input:first-of-type {
-  margin-top: 54px;
- 
+  margin-top: 75px;
 }
 
 .modal__error_visible {
@@ -141,6 +140,12 @@
   position: relative;
   top: calc(100% + 5px);
   transition: opacity 0.3s ease;
+  min-height: 15px;
+}
+
+.modal__error {
+  min-height: 30px;
+  display: block;
 }
 
 .modal__input_type_error {

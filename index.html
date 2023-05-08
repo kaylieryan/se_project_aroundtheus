@@ -69,8 +69,8 @@
             maxlength="40"
             minlength="2"
             required />
-          <span class="modal__input_type_error" id="modal-form-title-error"
-            >Please fill out this field.</span
+          <span class="modal__error modal__error_visible" id="modal-form-title-error"
+            ></span
           >
           <input
             class="modal__input modal__input_type_description"
@@ -81,8 +81,10 @@
             maxlength="200"
             minlength="2"
             required />
-          <span class="modal__input_type_error" id="modal-form-description-error"
-            >Please fill out this field.</span
+          <span
+            class="modal__error modal__error_visible"
+            id="modal-form-description-error"
+            ></span
           >
           <button
             class="modal__button modal__button_inactive"
@@ -113,8 +115,8 @@
             minlength="1"
             maxlength="30"
             required />
-          <span class="modal__input_type_error" id="card-modal-form-title-error"
-            >Please fill out this field.</span
+          <span class="modal__error modal__error_visible" id="card-modal-form-title-error"
+            ></span
           >
           <input
             class="modal__input modal__input_type_url"
@@ -124,9 +126,9 @@
             placeholder="Image URL"
             required />
           <span
-            class="modal__input_type_error"
+            class="modal__error"
             id="card-modal-form-description-error"
-            >Please enter a web address.</span
+            ></span
           >
           <button class="modal__button" type="submit" disabled>Save</button>
         </form>
@@ -161,7 +163,7 @@
         <button class="card__delete-button" type="button"></button>
       </li>
     </template>
-    <script src="./scripts/index.js"></script>
     <script src="./scripts/validation.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

@@ -132,6 +132,8 @@ const closeModalWithEsc = (e) => {
 
 document.addEventListener("keydown", closeModalWithEsc);
 
+
+
 profileEditButton.addEventListener("click", () => {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
@@ -150,5 +152,6 @@ closeButtons.forEach((button) => {
     handleModalClose(popup);
   });
 });
+
 
 
