@@ -107,13 +107,15 @@
 .modal__button:hover {
   cursor: pointer;
   opacity: 0.8;
+  border-radius: 2px;
 }
 .modal__button_inactive {
   background-color: #ffffff;
   border-color: rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.2);
   pointer-events: none;
-  border: solid 1px;
+  border: 1px solid #000000;
+  border-radius: 2px;
 }
 
 .modal__input {
