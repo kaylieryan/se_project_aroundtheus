@@ -153,18 +153,19 @@ const closeModalWithEsc = (e) => {
 
 document.addEventListener("keydown", closeModalWithEsc);
 
-profileEditButton.addEventListener("click", closeModalWithEsc);
-{
+profileEditButton.addEventListener("click", () => {
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
   handleModalOpen(editProfileModal);
-}
+});
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
-addNewCardButton.addEventListener("click", () => handleModalOpen(addCardModal));
+addNewCardButton.addEventListener("click", () =>
+  handleModalOpen(addCardModal, addCardModal)
+);
 
 closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
