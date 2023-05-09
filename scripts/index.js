@@ -63,10 +63,14 @@ const closeButtons = document.querySelectorAll(".modal__close");
 
 function handleModalClose(modal) {
   modal.classList.remove("modal_opened");
+  modal.removeEventListener("mousedown", closeModalWithClick);
+  document.removeEventListener("keydown", closeModalWithEsc);
 }
 
 function handleModalOpen(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("mousedown", closeModalWithClick);
+  document.addEventListener("keydown", closeModalWithEsc);
 }
 
 function renderCard(cardData, cardListEl) {
@@ -118,18 +122,27 @@ function handleAddCardFormSubmit(e) {
   e.preventDefault();
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
+
+  if (!name || !link) {
+    return;
+  }
+
   renderCard({ name, link }, cardListEl);
   handleModalClose(addCardModal);
   e.target.reset();
+
+  const inputEls = [...addCardModal.querySelectorAll(".modal__input")];
+  const submitButton = addCardModal.querySelector(".modal__submit-button");
+  toggleButtonState(inputEls, submitButton, {
+    inactiveButtonClass: "modal__submit-button_disabled",
+  });
 }
 
 const closeModalWithClick = (e) => {
-  if (e.target.classList.contains("modal")) {
-    handleModalClose(e.target);
+  if (e.target === e.currentTarget) {
+    handleModalClose(e.currentTarget);
   }
 };
-
-document.addEventListener("click", closeModalWithClick);
 
 const closeModalWithEsc = (e) => {
   if (e.key === "Escape") {
@@ -140,11 +153,12 @@ const closeModalWithEsc = (e) => {
 
 document.addEventListener("keydown", closeModalWithEsc);
 
-profileEditButton.addEventListener("click", () => {
+profileEditButton.addEventListener("click", closeModalWithEsc);
+{
   modalTitleInput.value = profileTitle.textContent;
   modalDescriptionInput.value = profileDescription.textContent;
   handleModalOpen(editProfileModal);
-});
+}
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
