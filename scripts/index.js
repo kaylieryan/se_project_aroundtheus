@@ -123,10 +123,6 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
 
-  if (!name || !link) {
-    return;
-  }
-
   renderCard({ name, link }, cardListEl);
   handleModalClose(addCardModal);
   e.target.reset();
@@ -150,8 +146,6 @@ const closeModalWithEsc = (e) => {
     handleModalClose(activeModal);
   }
 };
-
-document.addEventListener("keydown", closeModalWithEsc);
 
 profileEditButton.addEventListener("click", () => {
   modalTitleInput.value = profileTitle.textContent;
