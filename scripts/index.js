@@ -128,7 +128,7 @@ function handleAddCardFormSubmit(e) {
   e.target.reset();
 
   const inputEls = [...addCardModal.querySelectorAll(".modal__input")];
-  const submitButton = addCardModal.querySelector(".modal__submit-button");
+  const submitButton = addCardModal.querySelector(".modal__button");
   toggleButtonState(inputEls, submitButton, config);
 }
 
