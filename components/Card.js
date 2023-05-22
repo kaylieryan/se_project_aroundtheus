@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ name, link }) {
-    console.log(name, link);
-
+  constructor(cardTemplate) {
+    this._cardTemplate = cardTemplate;
+  }
 }

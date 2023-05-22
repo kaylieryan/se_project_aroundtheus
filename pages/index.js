@@ -32,12 +32,7 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-}
-
-const card = new Card(cardData);
+export const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
 
 
 
@@ -51,8 +46,8 @@ const profileEditForm = editProfileModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+//const cardTemplate =
+//  document.querySelector("#card-template").content.firstElementChild;
 
 const modalTitleInput = document.querySelector("#modal-form-title");
 const modalDescriptionInput = document.querySelector("#modal-form-description");
