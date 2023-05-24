@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/formValidator.js";
 
 const initialCards = [
   {
@@ -32,10 +33,6 @@ const initialCards = [
   },
 ];
 
-export const cardTemplate = document.querySelector("#card-template").content.querySelector(".card");
-
-
-
 //Elements
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -46,8 +43,7 @@ const profileEditForm = editProfileModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
-//const cardTemplate =
-//  document.querySelector("#card-template").content.firstElementChild;
+const cardTemplate = document.querySelector("#card-template").content.firstElementChild;
 
 const modalTitleInput = document.querySelector("#modal-form-title");
 const modalDescriptionInput = document.querySelector("#modal-form-description");
@@ -171,3 +167,20 @@ closeButtons.forEach((button) => {
     handleModalClose(popup);
   });
 });
+
+//Validation
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: ".modal__button_inactive",
+  inputErrorClass: ".modal__error-message",
+  errorClass: ".modal__error_visible",
+};
+
+const editProfileFormValidator = new FormValidator(config, profileEditForm);
+editProfileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, addCardFormElement);
+addCardFormValidator.enableValidation();
