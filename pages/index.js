@@ -61,6 +61,8 @@ const cardImage = document.querySelector(".card__image");
 const cardTitle = document.querySelector(".card__title");
 const closeButtons = document.querySelectorAll(".modal__close");
 
+const cardSelector = "#card-template";
+
 //Functions
 
 function handleModalClose(modal) {
@@ -75,10 +77,10 @@ function handleModalOpen(modal) {
   document.addEventListener("keydown", closeModalWithEsc);
 }
 
-function renderCard(cardData, cardListEl) {
+function renderCard(cardData,  )  {
   const cardElement = getCardElement(cardData);
-
   cardListEl.prepend(cardElement);
+  
 }
 
 function getCardElement(cardData) {

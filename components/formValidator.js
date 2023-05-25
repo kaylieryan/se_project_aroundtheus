@@ -1,6 +1,9 @@
+
+
+
+
 export default class FormValidator {
-  constructor(config, formEl ) {
-    this._formSelector = config.formSelector;
+  constructor(config, formEl) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
@@ -8,7 +11,6 @@ export default class FormValidator {
     this._errorClass = config.errorClass;
 
     this._formEl = formEl;
-  
   }
 
   _showInputError(inputEl, errorMessage) {
@@ -29,9 +31,10 @@ export default class FormValidator {
 
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      return this._showInputError(inputEl, inputEl.validationMessage);
+      this._showInputError(inputEl, inputEl.validationMessage);
+    } else {
+      this._hideInputError(inputEl);
     }
-    return this._hideInputError(inputEl);
   }
 
   _toggleButtonState(inputEls, submitButton) {
@@ -49,15 +52,18 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._inputEls = [...this._formEl.querySelectorAll(this._inputSelector)];
-    this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
-
     this._inputEls.forEach((inputEl) => {
-      inputEl.addEventListener("input", (e) => {
+      inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState(this._inputEls, this._submitButton);
+        this._toggleButtonState();
       });
     });
+    this._toggleButtonState();
+  }
+
+  deleteButtonState() {
+    this._submitButtonSelector.disabled = true;
+    this._submitButtonSelector.classList.add(this._config.inactiveButtonClass);
   }
 
   enableValidation() {
@@ -68,3 +74,4 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
+
