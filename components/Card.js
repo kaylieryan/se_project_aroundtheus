@@ -1,17 +1,29 @@
-
+import { handleModalOpen } from "../utils/utils.js";
+import {
+  
+}
+from "../pages/index.js"
 
 export default class Card {
-  constructor(data, cardSelector, handleModalOpen) {
+  constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._handleModalOpen = handleModalOpen;
   }
 
   _setEventListeners(cardElement) {
-    this._likeButton.
-    querySelector(".card__like-button")
-    .addEventListener("click", () => this._handleLikeClick());
+    const likeButton = cardElement.querySelector(".card__like-button");
+    const deleteButton = cardElement.querySelector(".card__delete-button");
+
+    likeButton.addEventListener("click", () => {
+      this._handleLikeClick();
+    });
+
+    deleteButton.addEventListener("click", () => {
+      this._handleDeleteClick();
+    });
+
+    this._cardImage.addEventListener("click", (evt) => this._handlePreviewClick(evt));
   }
 
 
@@ -40,34 +52,9 @@ export default class Card {
   }
 
   getView() {
-    this._cardElement = this._getTemplate();
-    this._cardTitle = this._cardElement.querySelector(".card__title");
+    this._getTemplate();
     this._cardImage = this._cardElement.querySelector(".card__image");
-    this._likeButton = this._cardElement.querySelector(".card__like-button");
-    this._deleteButton = this._cardElement.querySelector(".card__delete-button");
-    this._previewImageModal = document.querySelector("#image-modal");
-    this._previewTitle = this._previewImageModal.querySelector("#card-preview-title");
-    this._previewImage = this._previewImageModal.querySelector("#card-preview-image");
-
-    this._cardTitle.textContent = this._name;
-    this._cardImage.alt = this._name;
-    this._cardImage.src = this._link;
-
-    this._setEventListeners(this._cardElement);
-
-    this._likeButton.addEventListener("click", () => {
-      this._handleLikeClick();
-    });
-
-    this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteClick();
-    });
-
-    this._cardImage.addEventListener("click", () => {
-      this._handlePreviewClick();
-    });
-
-    return this._cardElement;
+    this._cardTitle = this._cardElement.querySelector(".card__title");
     
   }
 
