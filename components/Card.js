@@ -1,9 +1,3 @@
-import { handleModalOpen } from "../utils/utils.js";
-import {
-  
-}
-from "../pages/index.js"
-
 export default class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -55,7 +49,7 @@ export default class Card {
     this._getTemplate();
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
-    
+
   }
 
 }
