@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { handleModalClose, handleModalOpen, closeModalWithEsc } from "../utils/utils.js";
+
 
 const initialCards = [
   {
@@ -62,8 +62,6 @@ const cardImage = document.querySelector(".card__image");
 const cardTitle = document.querySelector(".card__title");
 const closeButtons = document.querySelectorAll(".modal__close");
 
-const cardSelector = "#card-template";
-
 //Functions
 
 function handleModalClose(modal) {
@@ -78,7 +76,12 @@ function handleModalOpen(modal) {
   document.addEventListener("keydown", closeModalWithEsc);
 }
 
-function renderCard(cardData,  )  {
+function createCard(cardData) {
+  const card = new Card(cardData, "#card-template");
+  return card.getView();
+}
+
+function renderCard(cardData, cardListEl) {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
   
