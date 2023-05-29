@@ -10,15 +10,15 @@ export function handleModalClose(modal) {
   document.removeEventListener("keydown", handleEscClose);
 }
 
-export function handleEscClose(evt) {
-  if (evt.key === "Escape") {
-    const openedModal = document.querySelector(".modal_opened");
-    handleModalClose(openedModal);
+export const closeModalWithClick = (e) => {
+  if (e.target === e.currentTarget) {
+    handleModalClose(e.currentTarget);
   }
-}
+};
 
 export function closeModalWithEsc(evt) {
   if (evt.key === "Escape") {
-    handleModalClose(this);
+    const openedModal = document.querySelector(".modal_opened");
+    handleModalClose(openedModal);
   }
 }

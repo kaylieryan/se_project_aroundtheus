@@ -1,8 +1,8 @@
 export default class FormValidator {
   constructor(config, formEl) {
     this._formSelector = config.formSelector;
-    this._inputEls
-    this._submitButton
+    this._inputEls;
+    this._submitButton;
 
     this._formEl = formEl;
   }
@@ -70,4 +70,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
