@@ -1,13 +1,13 @@
 export function handleModalOpen(modal) {
   modal.classList.add("modal_opened");
   modal.addEventListener("mousedown", closeModalWithClick);
-  document.addEventListener("keydown", handleEscClose);
+  document.addEventListener("keydown", closeModalWithEsc);
 }
 
 export function handleModalClose(modal) {
   modal.classList.remove("modal_opened");
   modal.removeEventListener("mousedown", closeModalWithClick);
-  document.removeEventListener("keydown", handleEscClose);
+  document.removeEventListener("keydown", closeModalWithEsc);
 }
 
 export const closeModalWithClick = (e) => {

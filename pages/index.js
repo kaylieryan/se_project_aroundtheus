@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import * as utils from "../utils/utils.js";
+import { handleModalOpen, handleModalClose } from "../utils/utils.js";
 import initialCards from "../utils/constants.js";
 
 //Elements
@@ -34,21 +34,13 @@ const closeButtons = document.querySelectorAll(".modal__close");
 
 //Functions
 
-function addCard (event) {
+function addCard(event) {
   event.preventDefault();
 
   const cardData = {
     name: cardTitleInput.value,
     link: cardUrlInput.value,
   };
-
-  const newCard = new Card(cardData, "#card-template").getView();
-
-  cardListEl.prepend(newCard);
-  addCardModal.querySelector(".modal__form").reset();
-  utils.closeModal(addCardModal);
-  addCardFormValidator.disableButtonState();
-
 }
 
 function handleProfileFormSubmit(e) {
@@ -56,8 +48,8 @@ function handleProfileFormSubmit(e) {
 
   profileTitle.textContent = modalTitleInput.value;
   profileDescription.textContent = modalDescriptionInput.value;
- 
-  utils.closeModal(editProfileModal);
+
+  handleModalClose(editProfileModal);
 }
 
 function fillProfileForm() {
@@ -73,23 +65,16 @@ export function handleImageModal(event, previewImageModal) {
   cardTitle.textContent = event.target.alt;
 }
 
-function handleModalOpen() {
-  utils.openModal(modal);
-}
-
-function handleModalClose() {
-  utils.closeModal(modal);
-}
-
 function closeImageModal() {
   utils.closeModal(previewImageModal);
-}
+} 
 
-function createCard (cardData) {
+function createCard(cardData) {
   const card = new Card(cardData, "#card-template");
   const cardElement = card.getView();
   return cardElement;
 }
+
 
 //Render initial cards
 
@@ -99,14 +84,22 @@ initialCards.forEach((obj) => {
 
 //Event Listeners
 
-profileEditButton.addEventListener("click", handleModalOpen);
-editProfileModal.addEventListener("click", handleProfileFormSubmit);
+profileEditButton.addEventListener("click", () => {
+  handleModalOpen(editProfileModal);
+});
 
-addNewCardButton.addEventListener("click", handleModalOpen);
+editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+
+addNewCardButton.addEventListener("click", () => {
+  handleModalOpen(addCardModal);
+});
+
+closeButtons.addEventListener("click", () => {
+  handleModalClose(addCardModal);
+});
+
 addCardFormElement.addEventListener("submit", addCard);
-
 previewImageModal.addEventListener("click", closeImageModal);
-
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 addCardModal.addEventListener("submit", addCard);
 
@@ -126,4 +119,3 @@ editProfileFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardModal);
 addCardFormValidator.enableValidation();
-

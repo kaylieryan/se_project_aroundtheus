@@ -1,4 +1,5 @@
 import { handleImageModal } from "../pages/index.js";
+//import { handleModalOpen } from "..utils/utils.js";
 
 export default class Card {
   _cardElement;
@@ -34,17 +35,25 @@ export default class Card {
     event.target.classList.toggle("card__like-button_active");
   }
 
-  _deleteCard(event) {
-    event.target.closest(".card").remove();
+  _deleteCard() {
+    this._cardElement.remove();
   }
 
+ /* _previewImageModal(event) {
+    const cardImage = previewImageModal.querySelector(".card__image");
+    const cardTitle = previewImageModal.querySelector(".card__title");
+    cardImage.src = event.target.src;
+    cardImage.alt = event.target.alt;
+    cardTitle.textContent = event.target.alt;
+    handleModalOpen(previewImageModal);
+  } */
+
   _setEventListeners() {
-    this._likeButton.addEventListener(
-      "click",
-      this._toggleLikeButton.bind(this)
+    this._likeButton.addEventListener("click", () => this._toggleLikeButton());
+    this._deleteButton.addEventListener("click", () => this._deleteCard());
+    this._cardImage.addEventListener("click", (event) =>
+      handleImageModal(event, this._previewImageModal)
     );
-    this._deleteButton.addEventListener("click", this._deleteCard.bind(this));
-    this._cardImage.addEventListener("click", handleImageModal);
   }
 
   getView() {
@@ -59,8 +68,5 @@ export default class Card {
     this._fillCard();
 
     return this._cardElement;
-  }
-  returnCardElement() {
-    return this._getView();
   }
 }
