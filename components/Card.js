@@ -11,10 +11,11 @@ export default class Card {
   _link;
   _cardSelector;
 
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, previewImageModal) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._previewImageModal = previewImageModal;
   }
 
   _getTemplate() {
