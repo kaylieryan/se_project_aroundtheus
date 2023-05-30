@@ -39,14 +39,14 @@ export default class Card {
     this._cardElement.remove();
   }
 
- /* _previewImageModal(event) {
+  _previewImageModal(event) {
     const cardImage = previewImageModal.querySelector(".card__image");
     const cardTitle = previewImageModal.querySelector(".card__title");
     cardImage.src = event.target.src;
     cardImage.alt = event.target.alt;
     cardTitle.textContent = event.target.alt;
     handleModalOpen(previewImageModal);
-  } */
+  }
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => this._toggleLikeButton());
