@@ -1,5 +1,5 @@
-import { handleImageModal } from "../pages/index.js";
-//import { handleModalOpen } from "..utils/utils.js";
+//import { handleImageModal } from "../pagesindex.js";
+import { handleModalOpen } from "../utils/utils.js";
 
 export default class Card {
   _cardElement;
@@ -15,7 +15,6 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
-    this._previewImageModal = previewImageModal;
   }
 
   _getTemplate() {
@@ -41,8 +40,9 @@ export default class Card {
   }
 
   _previewImageModal(event) {
-    const cardImage = previewImageModal.querySelector(".card__image");
-    const cardTitle = previewImageModal.querySelector(".card__title");
+    const previewImageModal = document.querySelector("#image-modal");
+    const cardImage = previewImageModal.querySelector(".modal__preview-image");
+    const cardTitle = previewImageModal.querySelector(".modal__preview-title");
     cardImage.src = event.target.src;
     cardImage.alt = event.target.alt;
     cardTitle.textContent = event.target.alt;
@@ -53,7 +53,7 @@ export default class Card {
     this._likeButton.addEventListener("click", () => this._toggleLikeButton());
     this._deleteButton.addEventListener("click", () => this._deleteCard());
     this._cardImage.addEventListener("click", (event) =>
-      handleImageModal(event, this._previewImageModal)
+      this._previewImageModal(event)
     );
   }
 

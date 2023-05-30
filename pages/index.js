@@ -57,13 +57,13 @@ function fillProfileForm() {
   modalDescriptionInput.value = profileDescription.textContent;
 }
 
-export function handleImageModal(event, previewImageModal) {
-  const cardImage = previewImageModal.querySelector(".card__image");
-  const cardTitle = previewImageModal.querySelector(".card__title");
+/*export function handleImageModal(event, previewImageModal) {
+  const cardImage = previewImageModal.querySelector(".modal__preview-image");
+  const cardTitle = previewImageModal.querySelector(".modal__preview-title");
   cardImage.src = event.target.src;
   cardImage.alt = event.target.alt;
   cardTitle.textContent = event.target.alt;
-}
+} */
 
 function closeImageModal() {
   utils.closeModal(previewImageModal);

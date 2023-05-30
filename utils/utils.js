@@ -11,7 +11,10 @@ export function handleModalClose(modal) {
 }
 
 export const closeModalWithClick = (e) => {
-  if (e.target === e.currentTarget) {
+  if (
+    e.target.classList.contains("modal__close") ||
+    e.target.classList.contains("modal")
+  ) {
     handleModalClose(e.currentTarget);
   }
 };
