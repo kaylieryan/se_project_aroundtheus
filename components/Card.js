@@ -50,7 +50,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("click", () => this._toggleLikeButton());
+    this._likeButton.addEventListener("click", (event) => this._toggleLikeButton(event));
     this._deleteButton.addEventListener("click", () => this._deleteCard());
     this._cardImage.addEventListener("click", (event) =>
       this._previewImageModal(event)

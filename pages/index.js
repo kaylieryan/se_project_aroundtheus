@@ -40,8 +40,14 @@ function addCard(event) {
   const cardData = {
     name: cardTitleInput.value,
     link: cardUrlInput.value,
-  };
-}
+  }
+  const newCard = new Card(cardData, "#card-template").returnCard();
+
+  cardListEl.prepend(newCard);
+  addCardFormElement.classList.remove("modal_opened").reset();
+  utils.closeModal(addCardModal);
+  addCardFormValidator.disableButton();
+} 
 
 function handleProfileFormSubmit(e) {
   e.preventDefault();
@@ -57,24 +63,17 @@ function fillProfileForm() {
   modalDescriptionInput.value = profileDescription.textContent;
 }
 
-/*export function handleImageModal(event, previewImageModal) {
-  const cardImage = previewImageModal.querySelector(".modal__preview-image");
-  const cardTitle = previewImageModal.querySelector(".modal__preview-title");
-  cardImage.src = event.target.src;
-  cardImage.alt = event.target.alt;
-  cardTitle.textContent = event.target.alt;
-} */
-
 function closeImageModal() {
   utils.closeModal(previewImageModal);
-} 
+}
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template");
-  const cardElement = card.getView();
-  return cardElement;
-}
 
+  const cardElement = card.getView();
+
+  return cardElement;
+} 
 
 //Render initial cards
 
@@ -92,10 +91,13 @@ closeButtons.forEach((closeButton) => {
 });
 
 profileEditButton.addEventListener("click", () => {
+  if (editProfileModal.classList.contains("modal_opened")) {
+    handleModalClose(editProfileModal);
+  }
   handleModalOpen(editProfileModal);
 });
 
-editProfileModal.addEventListener("submit", handleProfileFormSubmit);
+editProfileModal.addEventListener("click", handleProfileFormSubmit);
 
 addNewCardButton.addEventListener("click", () => {
   handleModalOpen(addCardModal);
@@ -104,7 +106,7 @@ addNewCardButton.addEventListener("click", () => {
 addCardFormElement.addEventListener("submit", addCard);
 previewImageModal.addEventListener("click", closeImageModal);
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
-addCardModal.addEventListener("submit", addCard);
+profileEditButton.addEventListener("click", fillProfileForm);
 
 //Validation
 
