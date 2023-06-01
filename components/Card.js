@@ -1,5 +1,5 @@
 //import { handleImageModal } from "../pagesindex.js";
-import { handleModalOpen } from "../utils/utils.js";
+import { handleModalOpen, handleModalClose } from "../utils/utils.js";
 
 export default class Card {
   _cardElement;
@@ -46,11 +46,14 @@ export default class Card {
     cardImage.src = event.target.src;
     cardImage.alt = event.target.alt;
     cardTitle.textContent = event.target.alt;
+
     handleModalOpen(previewImageModal);
   }
 
   _setEventListeners() {
-    this._likeButton.addEventListener("click", (event) => this._toggleLikeButton(event));
+    this._likeButton.addEventListener("click", (event) =>
+      this._toggleLikeButton(event)
+    );
     this._deleteButton.addEventListener("click", () => this._deleteCard());
     this._cardImage.addEventListener("click", (event) =>
       this._previewImageModal(event)

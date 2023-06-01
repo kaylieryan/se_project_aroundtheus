@@ -1,12 +1,12 @@
 export default class FormValidator {
   constructor(config, formEl) {
     this._formSelector = config.formSelector;
-    this._inputEls;
+    this._inputEls = config.inputSelector;
     this._submitButton;
 
     this._formEl = formEl;
   }
-
+    
   _showInputError(inputEl, errorMessage) {
     const errorEl = this._formEl.querySelector(`#${inputEl.id}-error`);
 
@@ -33,44 +33,36 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._disableButton();
+      this.disableButton();
     } else {
-      this._submitButton.classList.remove(this._config.inactiveButtonClass);
+      this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     }
   }
 
   _hasInvalidInput(inputEls) {
-    return inputEls.some((inputEl) => !inputEl.validity.valid);
+    return this.inputEls.some((inputEl) => !inputEl.validity.valid);
+  }
+
+  disableButton() {
+    const button = this._formEl.querySelector(this._submitButtonSelector);
+    button.disabled = true;
+    button.classList.add(this._inactiveButtonClass);
   }
 
   _setEventListeners() {
-    const inputEls = Array.from(
-      this._formEl.querySelectorAll(this._inputSelector)
-    );
-    const submitButton = this._formEl.querySelector(
-      this._submitButtonSelector
-    );
+    this._inputEls = Array.from( this._formEl.querySelectorAll(this._inputSelector));
+    this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
 
-    inputEls.forEach((inputEl) => {
+    this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState(inputEls, submitButton);
+        this._toggleButtonState();
       });
     });
   }
 
-  _disableButton() {
-    const button = this._formEl.querySelector(this._submitButtonSelector);
-    button.disabled = true;
-    button.classList.add(this._config.inactiveButtonClass);
-  }
-
   enableValidation() {
-    this._formEl.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
-
     this._setEventListeners();
   }
 }
