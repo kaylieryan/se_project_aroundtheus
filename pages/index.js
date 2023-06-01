@@ -46,7 +46,7 @@ function addCard(event) {
 
   cardListEl.prepend(newCard);
   addCardFormElement.reset();
-  utils.closeModal(addCardModal);
+  utils.handleModalClose(addCardModal);
   addCardFormValidator.disableButton();
 }  
 
@@ -64,8 +64,12 @@ function fillProfileForm() {
   modalDescriptionInput.value = profileDescription.textContent;
 }
 
-function closeImageModal() {
-  utils.closeModal(previewImageModal);
+function closeImageModal(event, previewImageModal) {
+  const previewImage = event.target.closest(".modal__preview-image");
+  const previewTitle = event.target.closest(".modal__preview-title");
+  previewImage.src = event.target.src;
+  previewImage.alt = event.target.alt;
+  previewTitle.textContent = event.target.alt;
 }
 
 function createCard(cardData) {
