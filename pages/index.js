@@ -32,6 +32,23 @@ const cardImage = document.querySelector(".card__image");
 const cardTitle = document.querySelector(".card__title");
 const closeButtons = document.querySelectorAll(".modal-close-button");
 
+//Validation
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_inactive",
+  inputErrorClass: "modal__error-message",
+  errorClass: "modal__error_visible",
+};
+
+const editProfileFormValidator = new FormValidator(config, editProfileModal);
+editProfileFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, addCardModal);
+addCardFormValidator.enableValidation();
+
 //Functions
 
 function addCard(event) {
@@ -46,9 +63,8 @@ function addCard(event) {
 
   cardListEl.prepend(newCard);
   addCardFormElement.reset();
-  utils.handleModalClose(addCardModal);
-  addCardFormValidator.disableButton();
-}  
+  handleModalClose(addCardModal);
+}
 
 function handleProfileFormSubmit(e) {
   e.preventDefault();
@@ -100,6 +116,7 @@ profileEditButton.addEventListener("click", () => {
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 
 addNewCardButton.addEventListener("click", () => {
+  addCardFormValidator.disableButton();
   handleModalOpen(addCardModal);
 });
 
@@ -108,19 +125,4 @@ previewImageModal.addEventListener("click", closeImageModal);
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 profileEditButton.addEventListener("click", fillProfileForm);
 
-//Validation
 
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: ".modal__button_inactive",
-  inputErrorClass: ".modal__error-message",
-  errorClass: ".modal__error_visible",
-};
-
-const editProfileFormValidator = new FormValidator(config, editProfileModal);
-editProfileFormValidator.enableValidation();
-
-const addCardFormValidator = new FormValidator(config, addCardModal);
-addCardFormValidator.enableValidation();

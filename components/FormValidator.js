@@ -3,6 +3,10 @@ export default class FormValidator {
     this._formSelector = config.formSelector;
     this._inputEls = config.inputSelector;
     this._submitButton;
+    this._submitButtonSelector = config.submitButtonSelector;
+    this._inactiveButtonClass = config.inactiveButtonClass;
+    this._inputSelector = config.inputSelector;
+
 
     this._formEl = formEl;
   }
@@ -38,18 +42,22 @@ export default class FormValidator {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     }
-  }
+  } 
 
-  _hasInvalidInput(inputEls) {
-    return this.inputEls.some((inputEl) => {
+  _hasInvalidInput() {
+    return this._inputEls.some((inputEl) => {
       return !inputEl.validity.valid;
     })
   }
 
   disableButton() {
-    const button = this._formEl.querySelector(this._submitButtonSelector);
     this._submitButton.disabled = true;
-    button.classList.add(this._inactiveButtonClass);
+    this._submitButton.classList.add(this._inactiveButtonClass);
+  }
+
+  enableButton() {
+    this._submitButton.disabled = false;
+    this._submitButton.classList.remove(this._inactiveButtonClass);
   }
 
   _setEventListeners() {
