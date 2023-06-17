@@ -1,5 +1,5 @@
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card";
+import FormValidator from "../components/FormValidator";
 import { handleModalOpen, handleModalClose } from "../utils/utils.js";
 import initialCards from "../utils/constants.js";
 
