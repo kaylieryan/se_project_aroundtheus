@@ -2,6 +2,7 @@ import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
 import { handleModalOpen, handleModalClose } from "../utils/utils.js";
 import initialCards from "../utils/constants.js";
+import "../pages/index.css";
 
 //Elements
 
