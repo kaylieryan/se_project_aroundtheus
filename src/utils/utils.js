@@ -1,3 +1,4 @@
+/*
 export function handleModalOpen(modal) {
   modal.classList.add("modal_opened");
   modal.addEventListener("mousedown", closeModalWithClick);
@@ -25,3 +26,5 @@ export function closeModalWithEsc(evt) {
     handleModalClose(openedModal);
   }
 }
+
+*/

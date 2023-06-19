@@ -1,5 +1,6 @@
 //import { handleImageModal } from "../pagesindex.js";
 import { handleModalOpen, handleModalClose } from "../utils/utils.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 export default class Card {
   _cardElement;
@@ -11,10 +12,11 @@ export default class Card {
   _link;
   _cardSelector;
 
-  constructor(data, cardSelector, previewImageModal) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor ({ name, link }, cardSelector, handleCardClick) {
+    this.name = name;
+    this.link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {

@@ -1,8 +1,12 @@
+import "../pages/index.css";
 import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
-import { handleModalOpen, handleModalClose } from "../utils/utils.js";
+//import { handleModalOpen, handleModalClose } from "../utils/utils.js";
 import initialCards from "../utils/constants.js";
-import "../pages/index.css";
+import Section from "../components/Section";
+import PopupWithImage from "../components/PopupWithImage";
+import PopupWithForm from "../components/PopupWithForm";
+import UserInfo from "../components/UserInfo";
 
 //Elements
 
@@ -91,7 +95,7 @@ function closeImageModal(event, previewImageModal) {
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template");
-  const cardElement = card.getView(); 
+  const cardElement = card.getView();
   return cardElement;
 }
 
@@ -125,5 +129,3 @@ addCardFormElement.addEventListener("submit", addCard);
 previewImageModal.addEventListener("click", closeImageModal);
 editProfileModal.addEventListener("submit", handleProfileFormSubmit);
 profileEditButton.addEventListener("click", fillProfileForm);
-
-
