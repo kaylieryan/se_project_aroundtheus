@@ -85,10 +85,14 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-const editProfileFormValidator = new FormValidator(config, editProfileModal);
+const editFormEl = document.querySelector("#edit-profile-form");
+
+const editProfileFormValidator = new FormValidator(config, editFormEl);
 editProfileFormValidator.enableValidation();
 
-const addCardFormValidator = new FormValidator(config, addCardModal);
+const addFormEl = document.querySelector("#add-card-form");
+
+const addCardFormValidator = new FormValidator(config, addFormEl);
 addCardFormValidator.enableValidation();
 
 //Event Listeners
