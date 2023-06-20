@@ -109,8 +109,7 @@ addNewCardButton.addEventListener("click", (event) => {
 
 //Card Functions
 
-function addCard({ title, url }) {
-  const newCardData = { title, url };
+function addCard(newCardData) {
   const newCard = createCard(newCardData);
   cardList.addItem(newCard);
   addCardModal.close();
