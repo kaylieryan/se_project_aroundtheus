@@ -1,7 +1,3 @@
-//import { handleImageModal } from "../pagesindex.js";
-import { handleModalOpen, handleModalClose } from "../utils/utils.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-
 export default class Card {
   _cardElement;
   _cardImage;
@@ -20,10 +16,7 @@ export default class Card {
   }
 
   _getTemplate() {
-    this._cardElement = document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNode(true);
+    this._cardElement = document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
     return this._cardElement;
   }
 
@@ -72,7 +65,10 @@ export default class Card {
     );
     this._setEventListeners();
     this._fillCard();
+    return this._cardElement;
+  }
 
+  returnCard() {
     return this._cardElement;
   }
 }
