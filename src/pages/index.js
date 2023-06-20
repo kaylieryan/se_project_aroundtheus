@@ -1,4 +1,3 @@
-import "../pages/index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import initialCards from "../utils/constants.js";
@@ -6,17 +5,13 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import "../pages/index.css";
 
 //Elements
 
-
-
-
-
-
 //Functions
 
- /*
+/*
 
 function handleProfileFormSubmit(e) {
   e.preventDefault();
@@ -41,9 +36,6 @@ function closeImageModal(event, previewImageModal) {
 }
 
 */
-
-
-
 
 //Buttons
 
@@ -70,16 +62,17 @@ editProfileModal.setEventListeners();
 const addCardModal = new PopupWithForm("#add-card-modal", addCard);
 addCardModal.setEventListeners();
 
-
 //Render initial cards
 
-const cardList = new Section({
-  items: initialCards,
-  renderer: addCard
-}, ".cards__list");
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: addCard,
+  },
+  ".cards__list"
+);
 
 cardList.renderItems();
-
 
 //Form Validation
 
@@ -112,21 +105,16 @@ addNewCardButton.addEventListener("click", (event) => {
 
 //Card Functions
 
-function createCard({ name, link }) {
-    const card = new Card({ name, link }, "#card-template", () => {
-      previewImageModal.open({ name, link });
-    });
-  return card.generateCard();
-}
-
 function addCard({ title, url }) {
-  const newCardData = { name: title, link: url };
+  const newCardData = { title, url };
   const newCard = createCard(newCardData);
   cardList.addItem(newCard);
   addCardModal.close();
 }
 
-
-
-
-
+function createCard({ name, link }) {
+  const card = new Card({ name, link }, "#card-template", () => {
+    previewImageModal.open({ name, link });
+  });
+  return card.getView();
+}
