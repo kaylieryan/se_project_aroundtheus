@@ -1,5 +1,5 @@
 export default class Card {
-  constructor (cardData, cardSelector, handleCardClick) {
+  constructor(cardData, cardSelector, handleCardClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
@@ -7,38 +7,47 @@ export default class Card {
   }
 
   _getTemplate() {
-    this._cardElement = document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
-    return this._cardElement;
+    const cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
+
+    return cardElement;
   }
 
-  _toggleLikeButton(event) {
-    this._cardElement.querySelector(".card__like-button").classList.toggle("card__like-button_active");
+  //handleLikeButton
+  _toggleLikeButton() {
+    this._cardElement
+      .querySelector(".card__like-button")
+      .classList.toggle("card__like-button_active");
   }
 
+  //handleDeleteButton
   _deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   }
 
-
   _setEventListeners() {
-  const likeButton = this._cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    this._toggleLikeButton();
-  });
+    const likeButton = this._cardElement.querySelector(".card__like-button");
+    likeButton.addEventListener("click", () => {
+      this._toggleLikeButton();
+    });
 
-  const deleteButton = this._cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {
-    this._deleteCard();
-  });
+    const deleteButton = this._cardElement.querySelector(
+      ".card__delete-button"
+    );
+    deleteButton.addEventListener("click", () => {
+      this._deleteCard();
+    });
 
-  const cardImage = this._cardElement.querySelector(".card__image");
-  cardImage.addEventListener("click", () => {
-    this._handleCardClick({ name: this._name, link: this._link });
-  });
-}
+    const cardImage = this._cardElement.querySelector(".card__image");
+    cardImage.addEventListener("click", () => {
+      this._handleCardClick({ name: this._name, link: this._link }); // destructuring the object
+    });
+  }
 
-  getView() {
+getView() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
     this._cardElement.querySelector(".card__image").src = this._link;

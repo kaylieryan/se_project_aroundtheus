@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -30,27 +30,28 @@ const initialCards = [
   },
 ];
 
-export default initialCards;
+//Used in index.js
 
-/*
-export const profileTitle = document.querySelector(".profile__title");
-export const profileDescription = document.querySelector(".profile__description");
-export const profileEditForm = editProfileModal.querySelector(".modal__form");
-export const addCardFormElement = addCardModal.querySelector(".modal__form");
-export const cardListEl = document.querySelector(".cards__list");
-export const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-export const modalTitleInput = document.querySelector("#modal-form-title");
-export const modalDescriptionInput = document.querySelector("#modal-form-description");
-export const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
-export const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
-export const previewTitle = previewImageModal.querySelector("#card-preview-title");
-export const previewImage = previewImageModal.querySelector("#card-preview-image");
-export const cardImage = document.querySelector(".card__image");
-export const cardTitle = document.querySelector(".card__title");
-export const closeButtons = document.querySelectorAll(".modal-close-button");
+export const profileEditModalSelector = document.querySelector("#profile-edit-modal");
+export const cardModalSelector = document.querySelector("#add-card-modal");
+export const profileEditButton = document.querySelector(".profile__edit-button");
+export const inputSelector = ".modal__input";
+export const addNewCardButton = document.querySelector(".profile__add-button");
+export const profileTitleSelector = document.querySelector(".profile__title");
+export const profileDescriptionSelector = document.querySelector(".profile__description");
+export const profileDescriptionElement = document.querySelector("#modal-form-description");
+export const profileTitleElement = document.querySelector("#modal-form-title");
 
-*/
+export const cardList = document.querySelector(".cards__list");
 
+export const previewImageModal = document.querySelector("#image-modal");
+
+
+export const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_inactive",
+  inputErrorClass: "modal__error-message",
+  errorClass: "modal__error_visible",
+};

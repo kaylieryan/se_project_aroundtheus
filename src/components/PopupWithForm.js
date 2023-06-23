@@ -1,23 +1,23 @@
-import Popup from "./Popup.js";
+import Popup from "../components/Popup.js";
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithFrom extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
-    this._popupForm = this._popupElement.querySelector(".modal__form");
+    this._popupForm = this._popupElement.querySelector(".modal__form"); // selects modal form for specific instance of this obj
   }
 
   close() {
     this._popupForm.reset();
-    this._popupElement.removeEventListener("submit", this._handleFormSubmit);
     super.close();
+    this._popupElement.removeEventListener("submit", this._handleFormSubmit);
   }
 
   _getInputValues() {
     const inputsObject = {};
-    this._inputList = document.querySelectorAll(".modal__input");
+    this._inputList = document.querySelectorAll("#modal-form-title");
     this._inputList.forEach((input) => {
-      if (input.type !== "") {
+      if (input.value !== "") {
         inputsObject[input.name] = input.value;
       }
     });
@@ -26,7 +26,7 @@ export default class PopupWithForm extends Popup {
 
   _submitForm = () => {
     const inputValues = this._getInputValues();
-    this._handleFormSubmit(inputValues());
+    this._handleFormSubmit(inputValues);
   };
 
   setEventListeners() {
