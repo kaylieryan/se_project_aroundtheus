@@ -1,6 +1,6 @@
 import Popup from "../components/Popup.js";
 
-export default class PopupWithFrom extends Popup {
+export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super({ popupSelector });
     this._handleFormSubmit = handleFormSubmit;
@@ -15,7 +15,7 @@ export default class PopupWithFrom extends Popup {
 
   _getInputValues() {
     const inputsObject = {};
-    this._inputList = document.querySelectorAll("#modal-form-title");
+    this._inputList = this._popupForm.querySelectorAll(".modal__input");
     this._inputList.forEach((input) => {
       if (input.value !== "") {
         inputsObject[input.name] = input.value;
