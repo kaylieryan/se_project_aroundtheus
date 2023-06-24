@@ -37,7 +37,7 @@ const userInfo = new UserInfo(profileTitleSelector, profileDescriptionSelector);
 const editProfilePopup = new PopupWithForm(
   profileEditModalSelector,
   (inputsObject) => {
-    userInfo.setUserInfo(inputsObject.title, inputsObject.description);
+    userInfo.setUserInfo(inputsObject.name, inputsObject.description);
     editProfilePopup.close();
   }
 );
