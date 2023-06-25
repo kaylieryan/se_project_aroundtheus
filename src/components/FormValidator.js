@@ -6,12 +6,14 @@ export default class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
-    this._formElement = formElement;
+    // this._formElement = formElement;
+    this._formElement = document.querySelector(formElement);
   }
 
   _showInputError(inputElement) {
-    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-    
+    this._errorElement = this._formElement.querySelector(
+      `#${inputElement.id}-error`
+    );
 
     inputElement.classList.add(this._inputErrorClass);
     this._errorElement.textContent = inputElement.validationMessage;
@@ -19,8 +21,10 @@ export default class FormValidator {
   }
 
   _hideInputError(inputElement) {
-    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
-  
+    this._errorElement = this._formElement.querySelector(
+      `#${inputElement.id}-error`
+    );
+
     inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
     this._errorElement.textContent = "";
@@ -38,6 +42,14 @@ export default class FormValidator {
     return !this._inputList.every(
       (inputElement) => inputElement.validity.valid
     );
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
   }
 
   toggleButtonState() {
