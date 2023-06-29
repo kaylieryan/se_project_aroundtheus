@@ -20,6 +20,17 @@ import {
   previewImageModal,
 } from "../utils/constants.js";
 
+
+fetch("https://around.nomoreparties.co/v1/cohort-3-en", {
+  headers: {
+    authorization: "dc4a34ca-4a0b-42d4-9854-788b4b33718e",
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
+
 //Form Validator
 
 const editProfileFormValidator = new FormValidator(
