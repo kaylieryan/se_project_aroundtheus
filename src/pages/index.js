@@ -5,6 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import {
   initialCards,
   config,
@@ -19,6 +20,16 @@ import {
   cardList,
   previewImageModal,
 } from "../utils/constants.js";
+
+//Api Class
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: "dc4a34ca-4a0b-42d4-9854-788b4b33718e",
+    "Content-Type": "application/json",
+  },
+}); 
 
 //Form Validator
 
