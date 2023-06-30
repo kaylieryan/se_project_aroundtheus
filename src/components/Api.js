@@ -16,6 +16,9 @@ getInitialCards() {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
+    })
+    .catch((err) => {
+      console.error(err);
     });
+    }
   }
-}

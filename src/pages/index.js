@@ -29,15 +29,15 @@ const api = new Api({
     authorization: "dc4a34ca-4a0b-42d4-9854-788b4b33718e",
     "Content-Type": "application/json",
   },
+});
+
+api.getInitialCards()
+   .then((result) => {
+      console.log(result);
 })
-.then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  }); 
-
-
-
-    
+.catch((err) => {
+  console.error(err);
+});
 
 //Form Validator
 
