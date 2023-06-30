@@ -29,7 +29,13 @@ const api = new Api({
     authorization: "dc4a34ca-4a0b-42d4-9854-788b4b33718e",
     "Content-Type": "application/json",
   },
-}); 
+})
+.then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 
+
+    
 
 //Form Validator
 
