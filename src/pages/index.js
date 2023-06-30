@@ -35,6 +35,8 @@ const api = new Api({
     console.log(result);
   }); 
 
+
+
     
 
 //Form Validator
