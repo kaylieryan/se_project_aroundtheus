@@ -5,7 +5,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-import api from "../components/Api.js";
+import Api from "../components/Api.js";
 import {
   initialCards,
   config,
@@ -31,13 +31,28 @@ const api = new Api({
   },
 });
 
-api.getInitialCards()
-   .then((result) => {
-      console.log(result);
-})
-.catch((err) => {
-  console.error(err);
-});
+let userId;
+let cardListSection;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData.name, userData.about);
+    cardListSection = new Section(
+      {
+        items: initialCards,
+        renderer: (data) => {
+          const newCard = createCard(data);
+          cardListSection.addItem(newCard);
+        },
+      },
+      cardList
+    );
+    cardListSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 //Form Validator
 
@@ -73,18 +88,18 @@ function openProfilePopup() {
 
 //Section Class
 
-const cardListSection = new Section(
-  {
-    items: initialCards,
-    renderer: ({ name, link }) => {
-      const newCard = createCard({ name, link });
-      cardListSection.addItem(newCard);
-    },
-  },
-  cardList
-);
+// const cardListSection = new Section(
+//   {
+//     items: initialCards,
+//     renderer: ({ name, link }) => {
+//       const newCard = createCard({ name, link });
+//       cardListSection.addItem(newCard);
+//     },
+//   },
+//   cardList
+// );
 
-cardListSection.renderItems();
+// cardListSection.renderItems();
 
 //PopupWithForm Class
 
