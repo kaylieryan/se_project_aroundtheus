@@ -107,6 +107,14 @@
   border: none;
 }
 
+/*confirm delete modal*/
+.modal__button-delete {
+  height: 50px;
+  width: 100%;
+  margin-top: 13px;
+  padding: 0 auto;
+}
+
 .modal__button:hover {
   cursor: pointer;
   opacity: 0.8;
