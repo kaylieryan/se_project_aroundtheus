@@ -146,28 +146,49 @@
 
     <!-- Confirm Delete Modal-->
 
-   <div class="modal" id="confirm-delete-modal">
-    <div class="modal__container">
-      <form class="modal__form">
-        <button class="modal__close-button" id="modal__close-delete-button" type="button"></button>
-        <h2 class="modal__title">Are you sure?</h2>
-        <button class="modal__button-save modal__button-delete" id="modal__delete-card-button" type="button">Yes</button>
-      </form>
+    <div class="modal" id="confirm-delete-modal">
+      <div class="modal__container">
+          <button
+            class="modal__close"
+            id="modal__close-delete-button"
+            type="button"></button>
+          <h2 class="modal__title">Are you sure?</h2>
+          <form class="modal__form" id="confirm-form" name="confirm-form"></form>
+          <button
+            class="modal__button"
+            type="button">
+            Yes
+          </button>
+        </form>
+      </div>
     </div>
-   </div>
 
     <!-- Change Profile Picture Modal-->
 
-    <template class="" id="card-template">
-      <li class="card">
-        <img src="" alt="" class="card__image" />
-        <div class="card__description">
-          <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button"></button>
-        </div>
-        <button class="card__delete-button" type="button"></button>
-      </li>
-    </template>
-    <!-- <script src="./pages/index.js" type="module" defer></script> -->
+    <div class="modal" id="change-profile-picture-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="change-profile-picture-close-button"
+          type="button"></button>
+        <h2 class="modal__title">Change profile picture</h2>
+        <form
+          class="modal__form"
+          id="change-profile-picture-form"
+          name="change-profile-picture-form">
+          <input
+            class="modal__input modal__input_type_url"
+            type="url"
+            name="profile-picture-url"
+            id="change-profile-picture-url"
+            placeholder="Image URL"
+            required />
+          <span
+            class="modal__error modal__error_visible"
+            id="change-profile-picture-url-error"></span>
+          <button class="modal__button modal__button_inactive" type="submit" disabled>Save</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
