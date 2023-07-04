@@ -2,6 +2,7 @@ import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithFormConfirmDelete from "../components/PopupWithFormConfirmDelete";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
@@ -19,6 +20,8 @@ import {
   addNewCardButton,
   cardList,
   previewImageModal,
+  changeProfilePictureModalSelector,
+  profileImage,
 } from "../utils/constants.js";
 
 //Api Class
@@ -63,6 +66,25 @@ const editProfileFormValidator = new FormValidator(
 const addCardFormValidator = new FormValidator(config, cardModalSelector);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+
+//Change Profile Picture
+
+const changeProfilePicturePopup = new PopupWithForm(
+  changeProfilePictureModalSelector,
+  handleChangeProfilePictureSubmit
+);
+
+function handleChangeProfilePictureSubmit() {
+  alert("hello")
+  changeProfilePicturePopup.close();
+}
+
+function openChangeProfilePicturePopup() {
+  changeProfilePicturePopup.open();
+}
+
+profileImage.addEventListener("click", openChangeProfilePicturePopup);
+
 
 //Profile Class
 

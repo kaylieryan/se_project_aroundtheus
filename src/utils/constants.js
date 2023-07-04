@@ -44,6 +44,12 @@ export const profileTitleElement = document.querySelector("#modal-form-title");
 export const cardList = document.querySelector(".cards__list");
 export const previewImageModal = "#image-modal";
 
+//Change Profile Picture
+export const changeProfilePictureModalSelector = "#change-profile-picture-modal";
+export const profileImage = document.querySelector(".profile__image");
+export const profileImageInput = document.querySelector("#modal__input_type_url");
+
+
 export const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
