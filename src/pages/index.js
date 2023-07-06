@@ -140,7 +140,7 @@ function createCard({ name, link }) {
     { name, link },
     "#card-template",
     ({ name, link }) => {
-      previewImagePopup.open({ name, link });
+     previewImagePopup.open({ name, link });
     }
   );
   return cardElement.getView();
