@@ -4,6 +4,12 @@
   padding-top: 40px;
 }
 
+.profile__image_overlay {
+  position: relative;
+  display: inline-block;
+  background-color:rgba(0, 0, 0, 0);
+}
+
 .profile__image {
   height: 120px;
   width: 120px;
@@ -12,6 +18,28 @@
   object-fit: cover;
   background-position: center;
 }
+
+.profile__image:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.profile__image_edit {
+  position: absolute;
+  left: 35%;  
+  top: 35%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile page__section:hover .profile__image_edit {
+  opacity: 1;
+}
+
+.profile page__section:hover .profile__image {
+  opacity: 0.5;
+}
+
+
 
 .profile__info {
   display: grid;
