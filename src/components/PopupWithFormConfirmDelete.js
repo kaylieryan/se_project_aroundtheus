@@ -17,5 +17,5 @@ export default class PopupWithFormConfirmDelete extends PopupWithForm {
   _handleSubmit = () => {
     const inputValues = this.data;
     this._handleFormSubmit(inputValues);
-  }
+  };
 }

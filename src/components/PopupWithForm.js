@@ -24,7 +24,6 @@ export default class PopupWithForm extends Popup {
     return inputsObject;
   }
 
-
   _submitForm = () => {
     const inputValues = this._getInputValues();
     this._handleFormSubmit(inputValues);
