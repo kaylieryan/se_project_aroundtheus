@@ -1,21 +1,31 @@
 import PopupWithForm from "./PopupWithForm";
 
 export default class PopupWithFormConfirmDelete extends PopupWithForm {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector, handleFormSubmit);
+  constructor(popupSelector) {
+    super({ popupSelector });
+    this._popupForm = this._popupElement.querySelector(".modal__form");
   }
 
-  open(data) {
-    super.open();
-    this.data = data;
+  setSubmitAction(action) {
+    this._handleFormSubmit = action;
   }
 
-  setSubmitAction(handleFormSubmit) {
-    this._handleFormSubmit = handleFormSubmit;
+  setLoading(isLoading) {
+    if (isLoading) {
+      this._popupForm.querySelector(".modal__button").textContent = "Deleting...";
+    } else {
+      this._popupForm.querySelector(".modal__button").textContent = "Submit Save";
+    }
   }
 
-  _handleSubmit = () => {
-    const inputValues = this.data;
-    this._handleFormSubmit(inputValues);
-  };
+  close() {
+    super.close();
+    this._popupForm.removeEventListener("submit", this._handleFormSubmit);
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._popupForm.addEventListener("submit", this._handleFormSubmit);
+  }
 }
+
