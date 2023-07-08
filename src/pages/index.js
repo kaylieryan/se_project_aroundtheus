@@ -115,15 +115,6 @@ addNewCardButton.addEventListener("click", () => {
 //Card Functions
 
 function createCard(cardData) {
-  //   const cardElement = new Card(
-  //     { name, link },
-  //     "#card-template",
-  //     ({ name, link }) => {
-  //       previewImagePopup.open({ name, link });
-  //     }
-  //   );
-  //   return cardElement.getView();
-  // }
   const cardElement = new Card({
     cardData,
     cardSelector: "#card-template",
