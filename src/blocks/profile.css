@@ -26,20 +26,23 @@
 .profile__image_edit {
   position: absolute;
   left: 35%;  
-  top: 35%;
+  top: 38%;
   opacity: 0;
   transition: opacity 0.3s ease;
+  
 }
 
-.profile page__section:hover .profile__image_edit {
+.profile__image_edit:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.profile__image_overlay:hover .profile__image_edit {
   opacity: 1;
 }
 
-.profile page__section:hover .profile__image {
-  opacity: 0.5;
+.profile__image_overlay:hover .profile__image {
+  opacity: 0.4;
 }
-
-
 
 .profile__info {
   display: grid;
