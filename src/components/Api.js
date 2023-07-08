@@ -58,16 +58,10 @@ export default class Api {
     });
   }
 
-  //Updates user profile picture on the server
-  updateProfilePicture(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: link,
-      }),
-    }).then((result) => {
-      return this._checkResponse(result);
-    });
-  }
+  //Updates Avatar on the server
+  
+
+  //Deletes a card from the server
+
+  //Adds a like to a card on the server
 }
