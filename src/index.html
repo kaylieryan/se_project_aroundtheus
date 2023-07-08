@@ -152,20 +152,18 @@
     <!-- Confirm Delete Modal-->
 
     <div class="modal" id="confirm-delete-modal">
-      <div class="modal__container">
-          <button
-            class="modal__close"
-            id="modal__close-delete-button"
-            type="button"></button>
-          <h2 class="modal__title">Are you sure?</h2>
-          <form class="modal__form" id="confirm-form" name="confirm-form"></form>
-          <button
-            class="modal__button"
-            type="button">
-            Yes
-          </button>
+      <div class="modal__container confirm-delete-modal">
+        <button
+          class="modal__close"
+          id="confirm-modal-close-button"
+          type="button"></button>
+        <h2 class="modal__title">Are you sure?</h2>
+        <form
+          class="modal__form modal__form_type_confirm-delete"
+          id="confirm-delete-form">
+          <button class="modal__button modal__button_type_confirm-delete" id="modal__button_type_confirm-delete" type="submit">Yes</button>
         </form>
-      </div>
+        </div>
     </div>
 
     <!-- Change Profile Picture Modal-->
@@ -195,6 +193,9 @@
         </form>
       </div>
     </div>
+
+    <!-- Card Template-->
+    
     <template class="" id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
