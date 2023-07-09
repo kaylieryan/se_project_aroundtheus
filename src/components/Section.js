@@ -12,10 +12,11 @@ export default class Section {
   }
 
   addItem(domElement) {
-    this._containerElement.append(domElement);
-  }
-
-  prependItem(domElement) {
+    //this._containerElement.append(domElement);
     this._containerElement.prepend(domElement);
   }
+
+  // prependItem(domElement) {
+  //   this._containerElement.prepend(domElement);
+  // }
 }
