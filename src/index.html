@@ -23,15 +23,15 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__image_overlay">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Avatar"
-            class="profile__image" />
-          <img 
-            src="<%=require('./images/edit-profile-pic.svg')%>"
-            alt="Edit Icon"
-            class="profile__image_edit" />
-        </div>
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Avatar"
+              class="profile__image" />
+            <img
+              src="<%=require('./images/edit-profile-pic.svg')%>"
+              alt="Edit Icon"
+              class="profile__image_edit" />
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -152,18 +152,16 @@
     <!-- Confirm Delete Modal-->
 
     <div class="modal" id="confirm-delete-modal">
-      <div class="modal__container confirm-delete-modal">
-        <button
-          class="modal__close"
-          id="confirm-modal-close-button"
-          type="button"></button>
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
         <h2 class="modal__title">Are you sure?</h2>
         <form
-          class="modal__form modal__form_type_confirm-delete"
-          id="confirm-delete-form">
-          <button class="modal__button modal__button_type_confirm-delete" id="modal__button_type_confirm-delete" type="submit">Yes</button>
+          class="modal__form"
+          id="confirm-delete-form"
+          name="confirm-delete-form">
+          <button class="modal__button" type="submit">Yes</button>
         </form>
-        </div>
+      </div>
     </div>
 
     <!-- Change Profile Picture Modal-->
@@ -172,7 +170,7 @@
       <div class="modal__container">
         <button
           class="modal__close"
-          id="change-profile-picture-close-button"
+          id="modal__close-change-profile-picture"
           type="button"></button>
         <h2 class="modal__title">Change profile picture</h2>
         <form
@@ -187,15 +185,21 @@
             placeholder="Image URL"
             required />
           <span
-            class="modal__error modal__error_visible"
+            class="modal__error"
             id="change-profile-picture-url-error"></span>
-          <button class="modal__button modal__button_inactive" type="submit" disabled>Save</button>
+          <button
+            class="modal__button modal__button_inactive"
+            id="modal__update-profile-picture-button"
+            type="submit"
+            disabled>
+            Save
+          </button>
         </form>
       </div>
     </div>
 
     <!-- Card Template-->
-    
+
     <template class="" id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />

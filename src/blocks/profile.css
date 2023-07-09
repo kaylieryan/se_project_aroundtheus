@@ -38,6 +38,7 @@
 
 .profile__image_overlay:hover .profile__image_edit {
   opacity: 1;
+  cursor: pointer; 
 }
 
 .profile__image_overlay:hover .profile__image {
