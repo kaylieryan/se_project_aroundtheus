@@ -73,7 +73,13 @@
 }
 
 .modal__form {
-  max-width: 430px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background: white;
+}
+
+.confirm__modal {
+  width: 430px;
 }
 
 .modal__title {

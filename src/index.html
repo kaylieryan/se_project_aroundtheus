@@ -27,18 +27,17 @@
               src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Avatar"
               class="profile__image" />
-            <img
-              src="<%=require('./images/edit-profile-pic.svg')%>"
-              alt="Edit Icon"
-              class="profile__image_edit" />
+            <button
+              class="profile__image-edit"
+              type="button"></button>
           </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
-              id="profile-edit-button"
               aria-label="edit button"
-              type="button"></button>
+              type="button">
+            </button>
             <p class="profile__description">Explorer</p>
           </div>
           <button
@@ -152,15 +151,19 @@
     <!-- Confirm Delete Modal-->
 
     <div class="modal" id="confirm-delete-modal">
-      <div class="modal__container">
-        <button class="modal__close" type="button"></button>
+      <div class="modal__container confirm__modal">
         <h2 class="modal__title">Are you sure?</h2>
-        <form
-          class="modal__form"
-          id="confirm-delete-form"
-          name="confirm-delete-form">
-          <button class="modal__button" type="submit">Yes</button>
+        <form class="modal__form" id="confirm-delete-form">
+          <fieldset class="modal__fieldset">
+            <button class="modal__button" id="confirm-button" type="submit">
+              Yes
+            </button>
+          </fieldset>
         </form>
+        <button
+          class="modal__close"
+          type="button"
+          aria-label="modal-close-button"></button>
       </div>
     </div>
 

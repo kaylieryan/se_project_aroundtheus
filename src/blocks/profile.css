@@ -7,7 +7,7 @@
 .profile__image_overlay {
   position: relative;
   display: inline-block;
-  background-color:rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .profile__image {
@@ -23,13 +23,22 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-.profile__image_edit {
+.profile__image-edit {
+  background: transparent url(../images/edit-button.svg) center no-repeat;
+  background-size: cover;
   position: absolute;
-  left: 35%;  
-  top: 38%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  
+  height: 26px;
+  width: 26px;
+  align-self: center;
+  border: none;
+  top: 50px;
+  left: 48px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.profile__image_overlay {
+  position: relative;
 }
 
 .profile__image_edit:hover {
@@ -38,7 +47,7 @@
 
 .profile__image_overlay:hover .profile__image_edit {
   opacity: 1;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .profile__image_overlay:hover .profile__image {
@@ -128,7 +137,6 @@
     margin: 0;
     text-align: right;
     align-items: center;
-
   }
   .profile__title {
     font-size: 22px;
