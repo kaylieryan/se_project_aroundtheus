@@ -6,8 +6,8 @@ export default class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
-    // this._formElement = formElement;
-    this._formElement = document.querySelector(formElement);
+    this._form = formElement;
+    //this._formElement = document.querySelector(formElement);
   }
 
   _showInputError(inputElement) {
@@ -85,4 +85,5 @@ export default class FormValidator {
     });
     this._setEventListeners();
   }
+
 }

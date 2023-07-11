@@ -17,19 +17,8 @@ export default class UserInfo {
     this._jobElement.textContent = jobInfo;
   }
 
-  setMyId(myId) {
-    this.myId = myId;
-  }
-
-  getMyId() {
-    return this.myId;
-  }
-
-  setProfileImage(imageUrl) {
-    this._imageElement.src = imageUrl;
-  }
-
-  getProfileImage() {
-    return this._imageElement.src;
+  setUserAvatar(imageElement) {
+    this._imageElement.src = imageElement;
+    console.log(imageElement);
   }
 }

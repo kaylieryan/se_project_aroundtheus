@@ -1,31 +1,43 @@
 import PopupWithForm from "./PopupWithForm";
 
 export default class PopupWithFormConfirmDelete extends PopupWithForm {
-  constructor(popupSelector) {
+  constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
-    this._popupForm = this._popupElement.querySelector(".modal__form");
+    this._handleFormSubmit = handleFormSubmit;
+    this._confirmDeleteButton =
+      this._popupElement.querySelector("#confirm-button");
+    this._setHandlers();
+  }
+
+  _setHandlers() {
+    this._confirmDelete = this._popupElement.querySelector("#confirm-button");
+    this._confirmDelete.addEventListener(
+      "click",
+      this._handleConfirm.bind(this)
+    );
+    this._confirmDeleteButton.addEventListener(
+      "click",
+      this._handleConfirm.bind(this)
+    );
+  }
+
+  _handleConfirm(event) {
+    event.preventDefault();
+    if (typeof this._confirmHandler === "function") {
+      this._confirmHandler();
+    }
+  }
+
+  open(id) {
+    super.open();
+    this._handleFormSubmit(id);
+  }
+
+  setConfirmHandler(confirmHandler) {
+    this._confirmHandler = confirmHandler;
   }
 
   setSubmitAction(action) {
     this._handleFormSubmit = action;
   }
-
-  setLoading(isLoading) {
-    if (isLoading) {
-      this._popupForm.querySelector(".modal__button").textContent = "Deleting...";
-    } else {
-      this._popupForm.querySelector(".modal__button").textContent = "Submit Save";
-    }
-  }
-
-  close() {
-    super.close();
-    this._popupForm.removeEventListener("submit", this._handleFormSubmit);
-  }
-
-  setEventListeners() {
-    super.setEventListeners();
-    this._popupForm.addEventListener("submit", this._handleFormSubmit);
-  }
 }
-

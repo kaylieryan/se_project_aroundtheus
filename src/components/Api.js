@@ -4,14 +4,6 @@ export default class Api {
     this._headers = headers;
   }
 
-  //Checks response from the server
-  _checkResponse(result) {
-    if (result.ok) {
-      return result.json();
-    }
-    return Promise.reject(`Error: ${result.status}`);
-  }
-
   //retrieves initial cards from the server
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
@@ -31,13 +23,25 @@ export default class Api {
   }
 
   //Updates user info on the server
-  setUserInfo(name, about) {
+  changeUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: about,
+      }),
+    }).then((result) => {
+      return this._checkResponse(result);
+    });
+  }
+
+  updateProfilePicture(imageElement) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: imageElement.url,
       }),
     }).then((result) => {
       return this._checkResponse(result);
@@ -58,10 +62,76 @@ export default class Api {
     });
   }
 
-  //Updates Avatar on the server
-  
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((result) => {
+      return this._checkResponse(result);
+    });
+  }
 
-  //Deletes a card from the server
+  changeLikeNumber(cardId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: isLiked ? "PUT" : "DELETE",
+      headers: this._headers,
+    }).then((result) => {
+      return this._checkResponse(result);
+    });
+  }
 
-  //Adds a like to a card on the server
+
+  //Checks response from the server
+  _checkResponse(result) {
+    if (result.ok) {
+      return result.json();
+    }
+    return Promise.reject(`Error: ${result.status}`);
+  }
+
+  // getInitialData(id) {
+  //   return fetch(`${this._baseUrl}/${id}`, {
+  //     headers: this._headers,
+  //   }).then(this._checkResponse);
+  // }
+
+  // addImagetoApi(placeName, imageLink) {
+  //   return fetch(`${this._baseUrl}/cards`, {
+  //     method: "POST",
+  //     headers: this._headers,
+  //     body: JSON.stringify({
+  //       name: placeName,
+  //       link: imageLink,
+  //     }),
+  //   }).then((result) => {
+  //     return this._checkResponse(result);
+  //   });
+  // }
+
+  // removeImageFromApi(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   }).then((result) => {
+  //     return this._checkResponse(result);
+  //   });
+  // }
+
+  // addLike(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  //     method: "PUT",
+  //     headers: this._headers,
+  //   }).then((result) => {
+  //     return this._checkResponse(result);
+  //   });
+  // }
+
+  // removeLike(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   }).then((result) => {
+  //     return this._checkResponse(result);
+  //   });
+  // }
 }
