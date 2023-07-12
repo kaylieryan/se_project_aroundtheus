@@ -1,6 +1,6 @@
 export default class Card {
   constructor(
-    { cardData, cardSelector, handlePreviewImage, userId},
+    { cardData, cardSelector, handlePreviewImage, userId },
     handleDeleteButton,
   ) {
     this._name = cardData.name;
@@ -73,7 +73,7 @@ export default class Card {
     this._deleteButton = this._cardElement.querySelector(
       ".card__delete-button"
     );
-    if (this._userId !== this._owner._id) {
+    if (this._userId !== this._owner) {
       this._deleteButton.classList.add("card__delete-button_hidden");
     }
   }
@@ -101,6 +101,7 @@ export default class Card {
   }
 }
 
+
  //new
   // _handlePreviewImage() {
   //   previewImage.src = this._link;
@@ -108,6 +109,7 @@ export default class Card {
   //   previewImageDescription.textContent = this._name;
   //   openModal(modalImagePopup);
   // }
+
 
 
   // _setEventListeners() {

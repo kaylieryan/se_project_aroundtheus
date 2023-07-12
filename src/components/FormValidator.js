@@ -6,8 +6,7 @@ export default class FormValidator {
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
 
-    this._form = formElement;
-    //this._formElement = document.querySelector(formElement);
+    this._formElement = document.querySelector(formElement);
   }
 
   _showInputError(inputElement) {
@@ -76,14 +75,15 @@ export default class FormValidator {
         this.toggleButtonState();
       });
     });
-    this.toggleButtonState();
   }
 
   enableValidation() {
+    this._formElement.addEventListener("reset", () => {
+      this.toggleButtonState();
+    });
     this._formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
     });
     this._setEventListeners();
   }
-
 }
