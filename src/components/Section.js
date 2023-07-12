@@ -5,8 +5,12 @@ export default class Section {
     this._containerElement = containerElement;
   }
 
+  // renderItems() {
+  //   this._items.reverse().forEach(this._renderer);
+  // }
+
   renderItems() {
-    this._items.reverse().forEach(this._renderer);
+    this._items.forEach(this._renderer);
   }
 
   addItem(domElement) {
