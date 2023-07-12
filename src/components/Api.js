@@ -13,6 +13,10 @@ export default class Api {
     });
   }
 
+  getInitialData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   //Retrieves user info from the server
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -41,7 +45,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: imageElement.url,
+        avatar: imageElement,
       }),
     }).then((result) => {
       return this._checkResponse(result);
@@ -62,8 +66,8 @@ export default class Api {
     });
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(getId) {
+    return fetch(`${this._baseUrl}/cards/${getId}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((result) => {
@@ -71,8 +75,8 @@ export default class Api {
     });
   }
 
-  changeLikeNumber(cardId, isLiked) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  changeLikeNumber(getId, isLiked) {
+    return fetch(`${this._baseUrl}/cards/likes/${getId}`, {
       method: isLiked ? "PUT" : "DELETE",
       headers: this._headers,
     }).then((result) => {
