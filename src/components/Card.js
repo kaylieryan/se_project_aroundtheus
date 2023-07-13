@@ -14,8 +14,6 @@ export default class Card {
     this._handleDeleteButton = handleDeleteButton;
   }
 
-  //NEW
-
   getId() {
     return this._id;
   }
