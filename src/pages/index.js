@@ -20,6 +20,9 @@ import {
   addNewCardButton,
   cardList,
   previewImageModal,
+  changeProfilePictureSelector,
+  profileImage,
+  profileImageButton,
 } from "../utils/constants.js";
 
 //Api Class
@@ -64,6 +67,12 @@ const editProfileFormValidator = new FormValidator(
 const addCardFormValidator = new FormValidator(config, cardModalSelector);
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
+
+const changeProfilePictureFormValidator = new FormValidator(
+  config,
+  changeProfilePictureSelector
+);
+changeProfilePictureFormValidator.enableValidation();
 
 //Profile Class
 
@@ -111,6 +120,28 @@ addNewCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
   newCardPopup.open();
 });
+
+const changeProfilePicturePopup = new PopupWithForm(
+  changeProfilePictureSelector,
+  (inputsObject) => {
+    api
+    .updateProfilePicture(inputsObject["profile-picture-url"])
+    .then((data) => {
+      profileImageButton.src = data.avatar;
+      changeProfilePicturePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  }
+);
+
+function openChangeProfilePicturePopup() {
+  changeProfilePictureFormValidator.toggleButtonState();
+  changeProfilePicturePopup.open();
+}
+
+profileImage.addEventListener("click", openChangeProfilePicturePopup);
 
 //Card Functions
 
