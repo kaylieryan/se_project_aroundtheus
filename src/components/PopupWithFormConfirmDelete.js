@@ -1,4 +1,4 @@
-import Popup from "./Popup.js";
+import Popup from "./PopupWithForm.js";
 
 export default class PopupWithFormConfirmDelete extends Popup {
   constructor({ popupSelector, handleFormSubmit }) {
@@ -8,6 +8,9 @@ export default class PopupWithFormConfirmDelete extends Popup {
       this._popupElement.querySelector("#confirm-button");
     this._setHandlers();
   }
+
+  //setLoading(isLoading, submitSave) {
+
 
   _setHandlers() {
     this._confirmDelete = this._popupElement.querySelector("#confirm-button");
