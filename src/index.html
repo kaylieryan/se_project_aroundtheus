@@ -27,17 +27,14 @@
               src="<%=require('./images/jacques-cousteau.jpg')%>"
               alt="Avatar"
               class="profile__image" />
-            <button
-              class="profile__image-edit"
-              type="button"></button>
+            <button class="profile__image-edit" type="button"></button>
           </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               aria-label="edit button"
-              type="button">
-            </button>
+              type="button"></button>
             <p class="profile__description">Explorer</p>
           </div>
           <button
@@ -151,19 +148,14 @@
     <!-- Confirm Delete Modal-->
 
     <div class="modal" id="confirm-delete-modal">
-      <div class="modal__container confirm__modal">
-        <h2 class="modal__title">Are you sure?</h2>
+      <div class="modal__container">
         <form class="modal__form" id="confirm-delete-form">
-          <fieldset class="modal__fieldset">
-            <button class="modal__button" id="confirm-button" type="submit">
-              Yes
-            </button>
-          </fieldset>
+          <button class="modal__close-button" id="modal__close-delete-button" type="button"></button>
+          <h3 class="modal__title">Are you sure?</h2>
+          <button class="modal__save-button modal__delete-card-button" id="modal__delete-card-button" type="submit">
+            Yes
+          </button>
         </form>
-        <button
-          class="modal__close"
-          type="button"
-          aria-label="modal-close-button"></button>
       </div>
     </div>
 
@@ -208,10 +200,10 @@
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
+          <span class="card__likes-count">0</span>
           <button class="card__like-button" type="button"></button>
         </div>
         <button class="card__delete-button" type="button"></button>
-        <span class="card__likes-count">0</span>
       </li>
     </template>
   </body>
