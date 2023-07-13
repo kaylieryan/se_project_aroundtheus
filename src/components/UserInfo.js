@@ -19,6 +19,5 @@ export default class UserInfo {
 
   setUserAvatar(imageElement) {
     this._imageElement.src = imageElement;
-    console.log(imageElement);
   }
 }
