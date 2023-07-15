@@ -33,11 +33,13 @@ export const initialCards = [
 //Change profile picture
 export const changeProfilePictureSelector = "#change-profile-picture-modal";
 export const profileImageButton = document.querySelector(".profile__image");
-// Change this to profileImageButton
 export const profileImage = document.querySelector(".profile__image-edit");
 export const profileImageInput = document.querySelector(
   ".modal__input_type_url"
 );
+//card likes count
+//export const amountOfLikes = document.querySelector(".card__likes-count");
+
 
 export const profileEditModalSelector = "#profile-edit-modal";
 export const cardModalSelector = "#add-card-modal";
