@@ -39,6 +39,11 @@
   margin: 0;
 }
 
+.card__like-container {
+  display: flex;
+  align-items: center;
+}
+
 .card__like-button {
   background-image: url(../images/like-inactive.svg);
   background-position: center;
@@ -51,12 +56,17 @@
 }
 
 .card__likes-count {
+  position: relative;
+  width: 9px;
+  height: 13px;
+  bottom: -15px;
+  right: 15px;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   text-align: center;
   line-height: 16px;
   font-size: 13px;
-  margin-top: auto;
+  color: #000000;
 }
 
 .card__like-button:hover {
