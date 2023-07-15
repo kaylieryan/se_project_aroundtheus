@@ -146,8 +146,9 @@ profileImage.addEventListener("click", openChangeProfilePicturePopup);
 //Card Functions
 
 function createCard(cardData) {
+  const { name, link, likes } = cardData;
   const cardElement = new Card({
-    cardData,
+    cardData: { name, link, likes },
     cardSelector: "#card-template",
     handlePreviewImage: ({ name, link }) => {
       previewImagePopup.open({ name, link });
