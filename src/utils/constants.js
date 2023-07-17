@@ -37,12 +37,9 @@ export const profileImage = document.querySelector(".profile__image-edit");
 export const profileImageInput = document.querySelector(
   ".modal__input_type_url"
 );
-//card likes count
-//export const amountOfLikes = document.querySelector(".card__likes-count");
-
-
 export const profileEditModalSelector = "#profile-edit-modal";
 export const cardModalSelector = "#add-card-modal";
+export const deleteCardModalSelector = "#delete-card-modal";
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
