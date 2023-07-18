@@ -36,46 +36,23 @@ const changeProfilePictureFormValidator = new FormValidator(
   config,
   changeProfilePictureSelector
 );
-//const deleteCardFormValidator = new FormValidator(config, deleteCardModalSelector);
-
+const editProfilePopup = new PopupWithForm(
+  profileEditModalSelector,
+  handleProfileFormSubmit
+);
+const changeProfilePicturePopup = new PopupWithForm(
+  changeProfilePictureSelector,
+  handleProfilePictureFormSubmit
+);
+const previewImagePopup = new PopupWithImage(previewImageModal);
 const userInfo = new UserInfo(
   profileTitleSelector,
   profileDescriptionSelector,
   profileImage
 );
-const editProfilePopup = new PopupWithForm(profileEditModalSelector, handleProfileFormSubmit);
-// (inputsObject) => {
-//   userInfo.setUserInfo(inputsObject.name, inputsObject.description);
-//   editProfilePopup.close();
 
-// const newCardPopup = new PopupWithForm(cardModalSelector);
-
-const changeProfilePicturePopup = new PopupWithForm(
-  changeProfilePictureSelector,
-  (inputsObject) => {
-    api
-      .updateProfilePicture(inputsObject["profile-picture-url"])
-      .then((data) => {
-        profileImageButton.src = data.avatar;
-        changeProfilePicturePopup.close();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-);
-
-const previewImagePopup = new PopupWithImage(previewImageModal);
 //const deleteImagePopup = new PopupWithFormConfirmDelete(deleteCardModalSelector);
-
-//Form Validators
-
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-changeProfilePictureFormValidator.enableValidation();
-//deleteCardFormValidator.enableValidation();
-
-//Api Promise
+//const deleteCardFormValidator = new FormValidator(config, deleteCardModalSelector);
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -85,34 +62,13 @@ const api = new Api({
   },
 });
 
-// let userId;
-// api.getUserInfo().then((userData) => {
-//   userId = userData._id;
-//   userInfo.setUserInfo(userData.name, userData.about);
-//   userInfo.setUserAvatar(userData.avatar);
-//   //profileImage.src = userData.avatar;
-// });
+//Form Validators
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+changeProfilePictureFormValidator.enableValidation();
+//deleteCardFormValidator.enableValidation();
 
-// let cardListSection;
-// api
-//   .getInitialCards()
-//   .then((initialCards) => {
-//     cardListSection = new Section(
-//       {
-//         items: initialCards,
-//         renderer: (data) => {
-//           const newCard = createCard(data);
-//           cardListSection.addItem(newCard);
-//         },
-//       },
-//       cardList
-//     );
-//     cardListSection.renderItems();
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
+//Api Promise
 let userId;
 let cardListSection;
 
@@ -137,20 +93,22 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     console.error(err);
   });
 
-//Section Class
-
-// const cardListSection = new Section(
-//   {
-//     items: initialCards,
-//     renderer: ({ name, link }) => {
-//       const newCard = createCard({ name, link });
-//       cardListSection.addItem(newCard);
-//     },
-//   },
-//   cardList
-// );
-
-//cardListSection.renderItems();
+//Profile Functions
+function handleProfilePictureFormSubmit(url) {
+  changeProfilePicturePopup.setLoading(true, "Save");
+  api
+    .updateProfilePicture(url)
+    .then((data) => {
+      userInfo.setUserAvatar(data.avatar);
+      changeProfilePicturePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      changeProfilePicturePopup.setLoading(false, "Save");
+    });
+}
 
 function openProfilePopup() {
   const { profileName, description } = userInfo.getUserInfo();
@@ -172,11 +130,8 @@ function handleProfileFormSubmit({ name, description }) {
       console.error(err);
     })
     .finally(() => {
-      editProfilePopup.setLoading(false);
+      editProfilePopup.setLoading(false, "Save");
     });
-
-  // userInfo.setUserInfo(inputsObject.name, inputsObject.description);
-  // editProfilePopup.close();
 }
 
 //Profile Set Event Listeners
