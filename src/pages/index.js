@@ -66,7 +66,7 @@ const changeProfilePicturePopup = new PopupWithForm(
 );
 
 const previewImagePopup = new PopupWithImage(previewImageModal);
-//const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
+//const deleteImagePopup = new PopupWithFormConfirmDelete(deleteCardModalSelector);
 
 //Form Validators
 
@@ -125,7 +125,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       {
         items: initialCards,
         renderer: (data) => {
-          const newCard = createCard(data);
+          const newCard = createCard(data, userId);
           cardListSection.addItem(newCard);
         },
       },
@@ -192,14 +192,14 @@ function openChangeProfilePicturePopup() {
 function submitCard({ title, url }) {
   console.log(title, url);
   api.addCard(title, url).then((data) => {
-    const newCardData = { name: data.name, link: data.link, likes: data.likes };
-    const newCard = createCard(newCardData);
+    // const newCardData = { name: data.name, link: data.link, likes: data.likes };
+    const newCard = createCard(data);
     cardListSection.addItem(newCard);
     newCardPopup.close();
   });
 }
 const newCardPopup = new PopupWithForm(cardModalSelector, submitCard);
-
+// const popupwithFormDelete  = new PopupWithFormConfirmDelete(deleteCardModalSelector, deleteMethodWIth API);
 function createCard(cardData, userId) {
   // const { name, link, likes } = cardData;
   const cardElement = new Card(
