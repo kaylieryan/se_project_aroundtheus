@@ -43,7 +43,7 @@ const userInfo = new UserInfo(
   profileDescriptionSelector,
   profileImage
 );
-const editProfilePopup = new PopupWithForm(profileEditModalSelector);
+const editProfilePopup = new PopupWithForm(profileEditModalSelector, handleProfileFormSubmit);
 // (inputsObject) => {
 //   userInfo.setUserInfo(inputsObject.name, inputsObject.description);
 //   editProfilePopup.close();
@@ -160,10 +160,10 @@ function openProfilePopup() {
   editProfilePopup.open();
 }
 
-function handleProfileFormSubmit({ title, description }) {
+function handleProfileFormSubmit({ name, description }) {
   editProfilePopup.setLoading(true);
   api
-    .updateUserInfo(title, description)
+    .changeUserInfo(name, description)
     .then((data) => {
       userInfo.setUserInfo(data.name, data.about);
       editProfilePopup.close();
