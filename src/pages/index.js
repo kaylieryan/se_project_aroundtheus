@@ -22,6 +22,7 @@ import {
   previewImageModal,
   changeProfilePictureSelector,
   profileImage,
+
   profileImageButton,
   deleteCardModalSelector,
 } from "../utils/constants.js";
@@ -34,7 +35,8 @@ const editProfileFormValidator = new FormValidator(
 const addCardFormValidator = new FormValidator(config, cardModalSelector);
 const changeProfilePictureFormValidator = new FormValidator(
   config,
-  changeProfilePictureSelector
+  changeProfilePictureSelector,
+  profileImageButton
 );
 const editProfilePopup = new PopupWithForm(
   profileEditModalSelector,
