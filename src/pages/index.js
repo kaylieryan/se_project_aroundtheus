@@ -2,7 +2,7 @@ import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithFormConfirmDelete from "../components/PopupWithFormConfirmDelete.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
@@ -66,7 +66,7 @@ const changeProfilePicturePopup = new PopupWithForm(
 );
 
 const previewImagePopup = new PopupWithImage(previewImageModal);
-//const deleteImagePopup = new PopupWithFormConfirmDelete(deleteCardModalSelector);
+//const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
 
 //Form Validators
 
@@ -200,15 +200,29 @@ function submitCard({ title, url }) {
 }
 const newCardPopup = new PopupWithForm(cardModalSelector, submitCard);
 
-function createCard(cardData) {
-  const { name, link, likes } = cardData;
-  const cardElement = new Card({
-    cardData: { name, link, likes },
-    cardSelector: "#card-template",
-    handlePreviewImage: ({ name, link }) => {
-      previewImagePopup.open({ name, link });
+function createCard(cardData, userId) {
+  // const { name, link, likes } = cardData;
+  const cardElement = new Card(
+    {
+      cardData: cardData,
+      cardSelector: "#card-template",
+      handlePreviewImage: ({ name, link }) => {
+        previewImagePopup.open({ name, link });
+      },
+      handleLikeButton: (cardId, isLiked) => {
+        console.log(cardId, isLiked);
+        api.changeLikeNumber(cardId, isLiked).then((data) => {
+          console.log(data);
+          cardElement.setLikes(data.likes);
+        });
+      },
+      // handleDeleteButton: (card id here) => {
+      //you want open the POpWithCOnfirm modal and you want
+
+      // }
     },
-  });
+    userId
+  );
   return cardElement.getView();
 }
 
