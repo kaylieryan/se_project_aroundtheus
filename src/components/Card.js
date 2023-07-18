@@ -1,21 +1,27 @@
 export default class Card {
   constructor(
-    { cardData, cardSelector, handlePreviewImage, userId },
-    handleDeleteButton,
+    {
+      cardData,
+      cardSelector,
+      handlePreviewImage,
+      userId,
+      handleLikeButton,
+      handleDeleteButton,
+    },
     myId,
-    handleLikeButton
   ) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._likes = cardData.likes;
-    this._ownerId = cardData.ownerId;
+    this._ownerId = cardData.owner._id;
     this._myId = myId;
     this._id = cardData._id;
-    this._userId = userId;
+    this._userId = userId; // not using this value as of now
     this._cardSelector = cardSelector;
     this._handlePreviewImage = handlePreviewImage;
     this._handleDeleteButton = handleDeleteButton;
     this._handleLikeButton = handleLikeButton;
+    console.log(this._myId);
   }
 
   getId() {
@@ -27,6 +33,7 @@ export default class Card {
   }
 
   setLikes(likes) {
+    console.log(likes);
     this._likes = likes;
     this._renderLikes();
   }
@@ -64,7 +71,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._toggleLikeButton();
+        this._handleLikeButton(this._id, this.isLiked());
       });
     if (this._myId === this._ownerId) {
       this._cardElement
@@ -85,7 +92,10 @@ export default class Card {
     this._cardElement = null;
   }
 
-  //handleLikeButton
+  // _handleLikeButton() {
+  //   this._handleLikeButton(this.getId(), this.isLiked());
+  // }
+
   _toggleLikeButton() {
     this._cardElement
       .querySelector(".card__like-button")
