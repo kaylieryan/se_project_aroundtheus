@@ -27,18 +27,28 @@ import {
 } from "../utils/constants.js";
 
 //Class Instances
-const editProfileFormValidator = new FormValidator(config, profileEditModalSelector);
+const editProfileFormValidator = new FormValidator(
+  config,
+  profileEditModalSelector
+);
 const addCardFormValidator = new FormValidator(config, cardModalSelector);
-const changeProfilePictureFormValidator = new FormValidator(config, changeProfilePictureSelector);
+const changeProfilePictureFormValidator = new FormValidator(
+  config,
+  changeProfilePictureSelector
+);
 //const deleteCardFormValidator = new FormValidator(config, deleteCardModalSelector);
 
-const userInfo = new UserInfo(profileTitleSelector, profileDescriptionSelector, profileImage);
+const userInfo = new UserInfo(
+  profileTitleSelector,
+  profileDescriptionSelector,
+  profileImage
+);
 const editProfilePopup = new PopupWithForm(profileEditModalSelector);
-  // (inputsObject) => {
-  //   userInfo.setUserInfo(inputsObject.name, inputsObject.description);
-  //   editProfilePopup.close();
-  
-const newCardPopup = new PopupWithForm(cardModalSelector);
+// (inputsObject) => {
+//   userInfo.setUserInfo(inputsObject.name, inputsObject.description);
+//   editProfilePopup.close();
+
+// const newCardPopup = new PopupWithForm(cardModalSelector);
 
 const changeProfilePicturePopup = new PopupWithForm(
   changeProfilePictureSelector,
@@ -64,8 +74,6 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 changeProfilePictureFormValidator.enableValidation();
 //deleteCardFormValidator.enableValidation();
-
-
 
 //Api Promise
 
@@ -105,9 +113,6 @@ const api = new Api({
 //     console.error(err);
 //   });
 
-
-
-
 let userId;
 let cardListSection;
 
@@ -131,7 +136,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch((err) => {
     console.error(err);
   });
-
 
 //Section Class
 
@@ -170,7 +174,6 @@ function handleProfileFormSubmit({ title, description }) {
     .finally(() => {
       editProfilePopup.setLoading(false);
     });
-  
 
   // userInfo.setUserInfo(inputsObject.name, inputsObject.description);
   // editProfilePopup.close();
@@ -187,11 +190,15 @@ function openChangeProfilePicturePopup() {
 
 //Card Functions
 function submitCard({ title, url }) {
-  const newCardData = { name: title, link: url };
-  const newCard = createCard(newCardData);
-  cardListSection.prependItem(newCard);
-  newCardPopup.close();
+  console.log(title, url);
+  api.addCard(title, url).then((data) => {
+    const newCardData = { name: data.name, link: data.link, likes: data.likes };
+    const newCard = createCard(newCardData);
+    cardListSection.addItem(newCard);
+    newCardPopup.close();
+  });
 }
+const newCardPopup = new PopupWithForm(cardModalSelector, submitCard);
 
 function createCard(cardData) {
   const { name, link, likes } = cardData;
@@ -205,15 +212,8 @@ function createCard(cardData) {
   return cardElement.getView();
 }
 
-
-
-
 //Card Set Event Listeners
 addNewCardButton.addEventListener("click", () => {
   addCardFormValidator.toggleButtonState();
   newCardPopup.open();
 });
-
-
-
-
