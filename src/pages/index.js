@@ -27,6 +27,10 @@ import {
 } from "../utils/constants.js";
 
 //Class Instances
+const deleteCardFormValidator = new FormValidator(
+  config,
+  deleteCardModalSelector
+);
 const editProfileFormValidator = new FormValidator(
   config,
   profileEditModalSelector
@@ -45,6 +49,8 @@ const changeProfilePicturePopup = new PopupWithForm(
   changeProfilePictureSelector,
   handleProfilePictureFormSubmit
 );
+const newCardPopup = new PopupWithForm(cardModalSelector, submitCard);
+
 const previewImagePopup = new PopupWithImage(previewImageModal);
 const userInfo = new UserInfo(
   profileTitleSelector,
@@ -52,9 +58,9 @@ const userInfo = new UserInfo(
   currentProfileImage
 );
 
-//const deleteImagePopup = new PopupWithFormConfirmDelete(deleteCardModalSelector);
-//const deleteCardFormValidator = new FormValidator(config, deleteCardModalSelector);
+const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
 
+//Api Instance
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
   headers: {
@@ -67,7 +73,7 @@ const api = new Api({
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 changeProfilePictureFormValidator.enableValidation();
-//deleteCardFormValidator.enableValidation();
+deleteCardFormValidator.enableValidation();
 
 //Api Promise
 let userId;
@@ -148,16 +154,13 @@ function openChangeProfilePicturePopup() {
 function submitCard({ title, url }) {
   console.log(title, url);
   api.addCard(title, url).then((data) => {
-    // const newCardData = { name: data.name, link: data.link, likes: data.likes };
     const newCard = createCard(data);
     cardListSection.addItem(newCard);
     newCardPopup.close();
   });
 }
-const newCardPopup = new PopupWithForm(cardModalSelector, submitCard);
-// const popupwithFormDelete  = new PopupWithFormConfirmDelete(deleteCardModalSelector, deleteMethodWIth API);
+
 function createCard(cardData, userId) {
-  // const { name, link, likes } = cardData;
   const cardElement = new Card(
     {
       cardData: cardData,
