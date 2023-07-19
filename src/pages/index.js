@@ -21,9 +21,8 @@ import {
   cardList,
   previewImageModal,
   changeProfilePictureSelector,
-  profileImage,
-
   profileImageButton,
+  currentProfileImage,
   deleteCardModalSelector,
 } from "../utils/constants.js";
 
@@ -36,7 +35,7 @@ const addCardFormValidator = new FormValidator(config, cardModalSelector);
 const changeProfilePictureFormValidator = new FormValidator(
   config,
   changeProfilePictureSelector,
-  profileImageButton
+  currentProfileImage
 );
 const editProfilePopup = new PopupWithForm(
   profileEditModalSelector,
@@ -50,7 +49,7 @@ const previewImagePopup = new PopupWithImage(previewImageModal);
 const userInfo = new UserInfo(
   profileTitleSelector,
   profileDescriptionSelector,
-  profileImage
+  currentProfileImage
 );
 
 //const deleteImagePopup = new PopupWithFormConfirmDelete(deleteCardModalSelector);
@@ -138,7 +137,7 @@ function handleProfileFormSubmit({ name, description }) {
 
 //Profile Set Event Listeners
 profileEditButton.addEventListener("click", openProfilePopup);
-profileImage.addEventListener("click", openChangeProfilePicturePopup);
+profileImageButton.addEventListener("click", openChangeProfilePicturePopup);
 
 function openChangeProfilePicturePopup() {
   changeProfilePictureFormValidator.toggleButtonState();

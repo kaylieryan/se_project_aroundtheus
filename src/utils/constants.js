@@ -32,8 +32,10 @@ export const initialCards = [
 
 //Change profile picture
 export const changeProfilePictureSelector = "#change-profile-picture-modal";
-export const profileImageButton = document.querySelector(".profile__image");
-export const profileImage = document.querySelector(".profile__image-edit");
+export const currentProfileImage = document.querySelector(".profile__image");
+export const profileImageButton = document.querySelector(
+  ".profile__image-edit"
+);
 export const profileImageInput = document.querySelector(
   ".modal__input_type_url"
 );

@@ -41,7 +41,7 @@ export default class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: data.url,
+        avatar: data["profile-picture-url"],
       }),
     }).then((result) => {
       return this._checkResponse(result);
