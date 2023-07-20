@@ -41,7 +41,7 @@ export const profileImageInput = document.querySelector(
 );
 export const profileEditModalSelector = "#profile-edit-modal";
 export const cardModalSelector = "#add-card-modal";
-export const deleteCardModalSelector = "#delete-card-modal";
+export const deleteCardModalSelector = "#confirm-delete-modal";
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
