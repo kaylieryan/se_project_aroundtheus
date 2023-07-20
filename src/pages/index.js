@@ -8,7 +8,7 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import {
-  initialCards,
+  //initialCards,
   config,
   profileTitleSelector,
   profileDescriptionSelector,
@@ -58,6 +58,16 @@ const userInfo = new UserInfo(
   currentProfileImage
 );
 
+// This is causing the following error
+// Uncaught DOMException DOMException: Failed to execute 'querySelector' on 'Document': '[object Object]' is not a valid selector.
+//     at Popup (/Users/kaylie/Projects/se_project_aroundtheus/src/components/Popup.js:3:35)
+//     at PopupWithForm (/Users/kaylie/Projects/se_project_aroundtheus/src/components/PopupWithForm.js:5:5)
+//     at PopupWithConfirm (/Users/kaylie/Projects/se_project_aroundtheus/src/components/PopupWithConfirm.js:5:5)
+//     at <anonymous> (/Users/kaylie/Projects/se_project_aroundtheus/src/pages/index.js:61:26)
+//     at <anonymous> (localhost꞉8080/main.js:8065:2)
+//     at <anonymous> (localhost꞉8080/main.js:8066:12)
+
+// popupSelector ends up being an object at some point, even though it's coming from a string in the constants file
 const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
 
 //Api Instance
@@ -73,7 +83,8 @@ const api = new Api({
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 changeProfilePictureFormValidator.enableValidation();
-deleteCardFormValidator.enableValidation();
+//deleteCardFormValidator.enableValidation();
+
 
 //Api Promise
 let userId;
