@@ -175,10 +175,24 @@ function createCard(cardData, userId) {
           cardElement.setLikes(data.likes);
         });
       },
-      // handleDeleteButton: (card id here) => {
-      //you want open the POpWithCOnfirm modal and you want
-
-      // }
+      handleDeleteButton: () => {
+        deleteImagePopup.setSubmitAction(() => {
+          deleteImagePopup.setLoading(true, "Yes");
+          api
+            .deleteCard(cardId)
+            .then((res) => {
+              cardElement.deleteCard(res.cardId);
+              deleteImagePopup.close();
+            })
+            .catch((err) => {
+              console.error(err);
+            })
+            .finally(() => {
+              deleteImagePopup.setLoading(false, "Yes");
+            });
+        });
+        deleteImagePopup.open(cardId);
+      },
     },
     userId
   );
