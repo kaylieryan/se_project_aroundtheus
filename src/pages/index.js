@@ -25,12 +25,14 @@ import {
   currentProfileImage,
   deleteCardModalSelector,
 } from "../utils/constants.js";
+import { data } from "autoprefixer";
 
 //Class Instances
-const deleteCardFormValidator = new FormValidator(
-  config,
-  deleteCardModalSelector
-);
+const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
+// const deleteCardFormValidator = new FormValidator(
+//   config,
+//   deleteCardModalSelector
+// );
 const editProfileFormValidator = new FormValidator(
   config,
   profileEditModalSelector
@@ -58,18 +60,6 @@ const userInfo = new UserInfo(
   currentProfileImage
 );
 
-// This is causing the following error
-// Uncaught DOMException DOMException: Failed to execute 'querySelector' on 'Document': '[object Object]' is not a valid selector.
-//     at Popup (/Users/kaylie/Projects/se_project_aroundtheus/src/components/Popup.js:3:35)
-//     at PopupWithForm (/Users/kaylie/Projects/se_project_aroundtheus/src/components/PopupWithForm.js:5:5)
-//     at PopupWithConfirm (/Users/kaylie/Projects/se_project_aroundtheus/src/components/PopupWithConfirm.js:5:5)
-//     at <anonymous> (/Users/kaylie/Projects/se_project_aroundtheus/src/pages/index.js:61:26)
-//     at <anonymous> (localhost꞉8080/main.js:8065:2)
-//     at <anonymous> (localhost꞉8080/main.js:8066:12)
-
-// popupSelector ends up being an object at some point, even though it's coming from a string in the constants file
-const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
-
 //Api Instance
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -84,7 +74,6 @@ editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 changeProfilePictureFormValidator.enableValidation();
 //deleteCardFormValidator.enableValidation();
-
 
 //Api Promise
 let userId;
@@ -163,12 +152,20 @@ function openChangeProfilePicturePopup() {
 
 //Card Functions
 function submitCard({ title, url }) {
-  console.log(title, url);
-  api.addCard(title, url).then((data) => {
-    const newCard = createCard(data);
-    cardListSection.addItem(newCard);
-    newCardPopup.close();
-  });
+  newCardPopup.setLoading(true);
+  api
+    .addCard(title, url)
+    .then((data) => {
+      const newCard = createCard(data, userId);
+      cardListSection.addItem(newCard);
+      newCardPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      newCardPopup.setLoading(false, "Create");
+    });
 }
 
 function createCard(cardData, userId) {
@@ -182,17 +179,16 @@ function createCard(cardData, userId) {
       handleLikeButton: (cardId, isLiked) => {
         console.log(cardId, isLiked);
         api.changeLikeNumber(cardId, isLiked).then((data) => {
-          console.log(data);
           cardElement.setLikes(data.likes);
         });
       },
-      handleDeleteButton: () => {
+      handleDeleteButton: (cardId) => {
         deleteImagePopup.setSubmitAction(() => {
-          deleteImagePopup.setLoading(true, "Yes");
+          deleteImagePopup.setLoading(true);
           api
             .deleteCard(cardId)
-            .then((res) => {
-              cardElement.deleteCard(res.cardId);
+            .then((result) => {
+              cardElement.remove(result._id);
               deleteImagePopup.close();
             })
             .catch((err) => {
