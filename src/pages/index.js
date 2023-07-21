@@ -25,14 +25,13 @@ import {
   currentProfileImage,
   deleteCardModalSelector,
 } from "../utils/constants.js";
-import { data } from "autoprefixer";
+//import { data } from "autoprefixer";
 
 //Class Instances
-const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
-// const deleteCardFormValidator = new FormValidator(
-//   config,
-//   deleteCardModalSelector
-// );
+const deleteCardFormValidator = new FormValidator(
+  config,
+  deleteCardModalSelector
+);
 const editProfileFormValidator = new FormValidator(
   config,
   profileEditModalSelector
@@ -60,6 +59,8 @@ const userInfo = new UserInfo(
   currentProfileImage
 );
 
+const deleteImagePopup = new PopupWithConfirm(deleteCardModalSelector);
+
 //Api Instance
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -73,7 +74,7 @@ const api = new Api({
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 changeProfilePictureFormValidator.enableValidation();
-//deleteCardFormValidator.enableValidation();
+deleteCardFormValidator.enableValidation();
 
 //Api Promise
 let userId;
@@ -177,7 +178,6 @@ function createCard(cardData, userId) {
         previewImagePopup.open({ name, link });
       },
       handleLikeButton: (cardId, isLiked) => {
-        console.log(cardId, isLiked);
         api.changeLikeNumber(cardId, isLiked).then((data) => {
           cardElement.setLikes(data.likes);
         });
@@ -185,10 +185,11 @@ function createCard(cardData, userId) {
       handleDeleteButton: (cardId) => {
         deleteImagePopup.setSubmitAction(() => {
           deleteImagePopup.setLoading(true);
+          cardElement.deleteCard();
           api
             .deleteCard(cardId)
             .then((result) => {
-              cardElement.remove(result._id);
+              cardElement.remove(result.cardId);
               deleteImagePopup.close();
             })
             .catch((err) => {
