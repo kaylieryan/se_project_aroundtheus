@@ -4,7 +4,6 @@ export default class Card {
       cardData,
       cardSelector,
       handlePreviewImage,
-      //userId,
       handleLikeButton,
       handleDeleteButton,
     },
@@ -16,7 +15,6 @@ export default class Card {
     this._ownerId = cardData.owner._id;
     this._myId = myId;
     this._id = cardData._id;
-    //this._userId = userId; // not using this value as of now
     this._cardSelector = cardSelector;
     this._handlePreviewImage = handlePreviewImage;
     this._handleDeleteButton = handleDeleteButton;
@@ -65,23 +63,6 @@ export default class Card {
       this._handlePreviewImage({ name: this._name, link: this._link });
     });
   }
-  // this._cardElement
-  //   .querySelector(".card__like-button")
-  //   .addEventListener("click", () => {
-  //     this._handleLikeButton(this._id, this.isLiked());
-  //   });
-  // if (this._myId === this._ownerId) {
-  //   this._cardElement
-  //     .querySelector(".card__delete-button")
-  //     .addEventListener("click", () => {
-  //       this._handleDeleteButtonClick();
-  //     });
-  // }
-  // this._cardElement
-  //   .querySelector(".card__image")
-  //   .addEventListener("click", () => {
-  //     this._handlePreviewImage({ name: this._name, link: this._link });
-  //   });
 
   deleteCard() {
     this._handleDeleteButton(this._id);
@@ -89,9 +70,6 @@ export default class Card {
 
   _toggleLikeButton() {
     this._handleDeleteButton(this._id);
-    // this._cardElement
-    //   .querySelector(".card__like-button")
-    //   .classList.toggle("card__like-button_active");
   }
 
   _hideDeleteButton() {

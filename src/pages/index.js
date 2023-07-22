@@ -8,7 +8,6 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import {
-  //initialCards,
   config,
   profileTitleSelector,
   profileDescriptionSelector,
@@ -25,8 +24,6 @@ import {
   currentProfileImage,
   deleteCardModalSelector,
 } from "../utils/constants.js";
-
-
 
 //Class Instances
 const editProfilePopup = new PopupWithForm(
@@ -171,10 +168,12 @@ function createCard(cardData, userId) {
         previewImagePopup.open({ name, link });
       },
       handleLikeButton: (cardId, isLiked) => {
-        api.changeLikeNumber(cardId, isLiked).then((data) => {
-          cardElement.setLikes(data.likes);
-        })
-        .catch(console.error);
+        api
+          .changeLikeNumber(cardId, isLiked)
+          .then((data) => {
+            cardElement.setLikes(data.likes);
+          })
+          .catch(console.error);
       },
       handleDeleteButton: (cardId) => {
         deleteImagePopup.setSubmitAction(() => {
@@ -187,7 +186,7 @@ function createCard(cardData, userId) {
               deleteImagePopup.close();
             })
             .catch(console.error)
-            
+
             .finally(() => {
               deleteImagePopup.setLoading(false, "Yes");
             });

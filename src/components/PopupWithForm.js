@@ -18,16 +18,6 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  // setLoading(isLoading, submitSave) {
-  //   if (isLoading) {
-  //     this._popupElement.querySelector(".modal__button").textContent =
-  //       "Saving...";
-  //   } else {
-  //     this._popupElement.querySelector(".modal__button").textContent =
-  //       submitSave;
-  //   }
-  // }
-
   close() {
     this._popupElement.removeEventListener("submit", this._submitForm);
     this._popupForm.reset();
