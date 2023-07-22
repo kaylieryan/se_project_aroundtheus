@@ -25,23 +25,10 @@ import {
   currentProfileImage,
   deleteCardModalSelector,
 } from "../utils/constants.js";
-//import { data } from "autoprefixer";
+
+
 
 //Class Instances
-const deleteCardFormValidator = new FormValidator(
-  config,
-  deleteCardModalSelector
-);
-const editProfileFormValidator = new FormValidator(
-  config,
-  profileEditModalSelector
-);
-const addCardFormValidator = new FormValidator(config, cardModalSelector);
-const changeProfilePictureFormValidator = new FormValidator(
-  config,
-  changeProfilePictureSelector,
-  currentProfileImage
-);
 const editProfilePopup = new PopupWithForm(
   profileEditModalSelector,
   handleProfileFormSubmit
@@ -71,10 +58,21 @@ const api = new Api({
 });
 
 //Form Validators
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-changeProfilePictureFormValidator.enableValidation();
-deleteCardFormValidator.enableValidation();
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    // Get the name of the form
+    const formName = formElement.getAttribute("name");
+    // Store a validator by the `name` of the form
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config);
 
 //Api Promise
 let userId;
@@ -97,9 +95,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     );
     cardListSection.renderItems();
   })
-  .catch((err) => {
-    console.error(err);
-  });
+  .catch(console.error);
 
 //Profile Functions
 function handleProfilePictureFormSubmit(url) {
@@ -110,9 +106,8 @@ function handleProfilePictureFormSubmit(url) {
       userInfo.setUserAvatar(data.avatar);
       changeProfilePicturePopup.close();
     })
-    .catch((err) => {
-      console.error(err);
-    })
+    .catch(console.error)
+
     .finally(() => {
       changeProfilePicturePopup.setLoading(false, "Save");
     });
@@ -122,7 +117,7 @@ function openProfilePopup() {
   const { profileName, description } = userInfo.getUserInfo();
   profileTitleElement.value = profileName;
   profileDescriptionElement.value = description;
-  editProfileFormValidator.toggleButtonState();
+  formValidators["edit-profile-form"].resetValidation();
   editProfilePopup.open();
 }
 
@@ -134,9 +129,8 @@ function handleProfileFormSubmit({ name, description }) {
       userInfo.setUserInfo(data.name, data.about);
       editProfilePopup.close();
     })
-    .catch((err) => {
-      console.error(err);
-    })
+    .catch(console.error)
+
     .finally(() => {
       editProfilePopup.setLoading(false, "Save");
     });
@@ -147,7 +141,7 @@ profileEditButton.addEventListener("click", openProfilePopup);
 profileImageButton.addEventListener("click", openChangeProfilePicturePopup);
 
 function openChangeProfilePicturePopup() {
-  changeProfilePictureFormValidator.toggleButtonState();
+  formValidators["change-profile-picture-form"].resetValidation();
   changeProfilePicturePopup.open();
 }
 
@@ -161,9 +155,8 @@ function submitCard({ title, url }) {
       cardListSection.addItem(newCard);
       newCardPopup.close();
     })
-    .catch((err) => {
-      console.error(err);
-    })
+    .catch(console.error)
+
     .finally(() => {
       newCardPopup.setLoading(false, "Create");
     });
@@ -180,7 +173,8 @@ function createCard(cardData, userId) {
       handleLikeButton: (cardId, isLiked) => {
         api.changeLikeNumber(cardId, isLiked).then((data) => {
           cardElement.setLikes(data.likes);
-        });
+        })
+        .catch(console.error);
       },
       handleDeleteButton: (cardId) => {
         deleteImagePopup.setSubmitAction(() => {
@@ -192,9 +186,8 @@ function createCard(cardData, userId) {
               cardElement.remove(result.cardId);
               deleteImagePopup.close();
             })
-            .catch((err) => {
-              console.error(err);
-            })
+            .catch(console.error)
+            
             .finally(() => {
               deleteImagePopup.setLoading(false, "Yes");
             });
@@ -209,6 +202,6 @@ function createCard(cardData, userId) {
 
 //Card Set Event Listeners
 addNewCardButton.addEventListener("click", () => {
-  addCardFormValidator.toggleButtonState();
+  formValidators["add-card-form"].resetValidation();
   newCardPopup.open();
 });
