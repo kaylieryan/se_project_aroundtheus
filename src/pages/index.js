@@ -177,7 +177,7 @@ function createCard(cardData, userId) {
       },
       handleDeleteButton: (cardId) => {
         deleteImagePopup.setSubmitAction(() => {
-          deleteImagePopup.setLoading(true);
+          deleteImagePopup.renderLoading(true);
           cardElement.deleteCard();
           api
             .deleteCard(cardId)
@@ -188,7 +188,7 @@ function createCard(cardData, userId) {
             .catch(console.error)
 
             .finally(() => {
-              deleteImagePopup.setLoading(false, "Yes");
+              deleteImagePopup.renderLoading(false, "Yes");
             });
         });
         deleteImagePopup.open(cardId);
