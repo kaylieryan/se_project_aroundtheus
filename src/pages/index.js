@@ -96,7 +96,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 
 //Profile Functions
 function handleProfilePictureFormSubmit(url) {
-  changeProfilePicturePopup.setLoading(true, "Save");
+  changeProfilePicturePopup.renderLoading(true, "Saving...");
   api
     .updateProfilePicture(url)
     .then((data) => {
@@ -106,7 +106,7 @@ function handleProfilePictureFormSubmit(url) {
     .catch(console.error)
 
     .finally(() => {
-      changeProfilePicturePopup.setLoading(false, "Save");
+      changeProfilePicturePopup.renderLoading(false, "Save");
     });
 }
 
@@ -119,7 +119,7 @@ function openProfilePopup() {
 }
 
 function handleProfileFormSubmit({ name, description }) {
-  editProfilePopup.setLoading(true);
+  editProfilePopup.renderLoading(true);
   api
     .changeUserInfo(name, description)
     .then((data) => {
@@ -129,7 +129,7 @@ function handleProfileFormSubmit({ name, description }) {
     .catch(console.error)
 
     .finally(() => {
-      editProfilePopup.setLoading(false, "Save");
+      editProfilePopup.renderLoading(false, "Save");
     });
 }
 
@@ -144,7 +144,7 @@ function openChangeProfilePicturePopup() {
 
 //Card Functions
 function submitCard({ title, url }) {
-  newCardPopup.setLoading(true);
+  newCardPopup.renderLoading(true);
   api
     .addCard(title, url)
     .then((data) => {
@@ -155,7 +155,7 @@ function submitCard({ title, url }) {
     .catch(console.error)
 
     .finally(() => {
-      newCardPopup.setLoading(false, "Create");
+      newCardPopup.renderLoading(false, "Create");
     });
 }
 
